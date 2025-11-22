@@ -1,26 +1,48 @@
-// Mobile Menu Toggle
+// Language Toggle Function
+function toggleLanguage() {
+    const html = document.getElementById('html-root');
+    const currentLang = html.getAttribute('lang');
+    const newLang = currentLang === 'fa' ? 'en' : 'fa';
+    
+    // Update HTML lang and dir attributes
+    html.setAttribute('lang', newLang);
+    html.setAttribute('dir', newLang === 'fa' ? 'rtl' : 'ltr');
+    
+    // Toggle visibility of language-specific elements
+    const faElements = document.querySelectorAll('[data-lang="fa"]');
+    const enElements = document.querySelectorAll('[data-lang="en"]');
+    
+    faElements.forEach(el => {
+        el.style.display = newLang === 'fa' ? '' : 'none';
+    });
+    
+    enElements.forEach(el => {
+        el.style.display = newLang === 'en' ? '' : 'none';
+    });
+    
+    // Save language preference
+    localStorage.setItem('preferredLanguage', newLang);
+}
+
+// Initialize language on page load
 document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+    const savedLang = localStorage.getItem('preferredLanguage') || 'fa';
+    const html = document.getElementById('html-root');
+    
+    if (savedLang !== html.getAttribute('lang')) {
+        // Trigger language change if saved language is different
+        const faElements = document.querySelectorAll('[data-lang="fa"]');
+        const enElements = document.querySelectorAll('[data-lang="en"]');
+        
+        html.setAttribute('lang', savedLang);
+        html.setAttribute('dir', savedLang === 'fa' ? 'rtl' : 'ltr');
+        
+        faElements.forEach(el => {
+            el.style.display = savedLang === 'fa' ? '' : 'none';
         });
-
-        // Close menu when clicking on a link
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!navMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
-                navMenu.classList.remove('active');
-            }
+        
+        enElements.forEach(el => {
+            el.style.display = savedLang === 'en' ? '' : 'none';
         });
     }
 });

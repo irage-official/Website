@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,116 +9,51 @@
     <link rel="icon" type="image/png" href="assets/images/logo_centered.png">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <!-- Header -->
+    <header class="header">
         <div class="container">
-            <div class="nav-content">
+            <div class="header-content">
                 <a href="index.html" class="logo">
                     <img src="assets/images/logo_centered.png" alt="ایراژ">
-                    <span>ایراژ</span>
+                    <span data-lang="fa">ایراژ</span>
+                    <span data-lang="en" style="display: none;">Irage</span>
                 </a>
-                <button class="mobile-menu-toggle" aria-label="منو">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="active">خانه</a></li>
-                    <li><a href="pages/about.html">درباره ما</a></li>
-                    <li><a href="pages/resources.html">منابع</a></li>
-                    <li><a href="pages/terms.html">شرایط استفاده</a></li>
-                    <li><a href="pages/policy.html">پالیسی</a></li>
-                    <li><button class="btn-donation" onclick="openDonationModal()">حمایت</button></li>
-                </ul>
+                <div class="header-actions">
+                    <button class="btn-lang" onclick="toggleLanguage()">
+                        <span data-lang="fa">EN</span>
+                        <span data-lang="en" style="display: none;">FA</span>
+                    </button>
+                    <a href="pages/donation.html" class="btn-donation">
+                        <span data-lang="fa">حمایت</span>
+                        <span data-lang="en" style="display: none;">Donate</span>
+                    </a>
+                </div>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">ایراژ</h1>
-                <p class="hero-subtitle">تقویم مستقل ایرانی</p>
-                <p class="hero-description">
-                    اولین تقویم ملی‌گرای ایرانی که با صفر ارتباط با نظام جمهوری اسلامی ساخته شده است. 
-                    این تقویم میراث کهن ما را حفظ می‌کند و در عین حال جنایات نظام را مستند می‌کند.
+                <h1 class="hero-title">
+                    <span data-lang="fa">ایراژ</span>
+                    <span data-lang="en" style="display: none;">Irage</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span data-lang="fa">تقویم مستقل ایرانی</span>
+                    <span data-lang="en" style="display: none;">Independent Iranian Calendar</span>
                 </p>
-                <div class="hero-buttons">
-                    <a href="#download" class="btn btn-primary">دانلود اپلیکیشن</a>
-                    <button class="btn btn-secondary" onclick="openDonationModal()">حمایت از پروژه</button>
-                </div>
+                <p class="hero-description">
+                    <span data-lang="fa">اولین تقویم ملی‌گرای ایرانی که با صفر ارتباط با نظام جمهوری اسلامی ساخته شده است. این تقویم میراث کهن ما را حفظ می‌کند و در عین حال جنایات نظام را مستند می‌کند.</span>
+                    <span data-lang="en" style="display: none;">The first independent Iranian calendar built with zero connection to the Islamic Republic regime. This calendar preserves our ancient heritage while documenting the regime's crimes.</span>
+                </p>
             </div>
-            <div class="hero-image">
-                <img src="assets/images/logo_centered.png" alt="ایراژ">
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">ویژگی‌های ایراژ</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <h3>میراث ما</h3>
-                    <p>جشنواره‌ها، سنت‌ها، اسطوره‌ها، قهرمانان و فرهنگ کهن که هویت واقعی ما را شکل داده‌اند</p>
+            <div class="hero-banner">
+                <div class="banner-placeholder">
+                    <span data-lang="fa">اسکرین‌شات اپلیکیشن</span>
+                    <span data-lang="en" style="display: none;">App Screenshot</span>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔥</div>
-                    <h3>واقعیت ما</h3>
-                    <p>مستندسازی روشن و بدون سانسور جنایات نظام جمهوری اسلامی علیه مردم ایران</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>مستقل و بی‌طرف</h3>
-                    <p>بدون حمایت مالی، بدون ارتباط سیاسی، بدون تبلیغات - فقط عشق به وطن</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>چند پلتفرمه</h3>
-                    <p>در دسترس برای iOS، Android و Web - همیشه در دسترس شما</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mission Section -->
-    <section class="mission">
-        <div class="container">
-            <div class="mission-content">
-                <h2>این فقط یک تقویم نیست</h2>
-                <p>این یک عمل مقاومت آرام است.</p>
-                <p>یک ادای احترام به میراث ما.</p>
-                <p>یک یادآوری از قدرت جمعی ما.</p>
-                <p>و یک گام کوچک به سوی ایران شایسته‌ای که سزاوارش هستیم.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Download Section -->
-    <section id="download" class="download">
-        <div class="container">
-            <h2 class="section-title">دانلود اپلیکیشن</h2>
-            <div class="download-buttons">
-                <a href="#" class="download-btn ios">
-                    <span>دانلود برای iOS</span>
-                </a>
-                <a href="#" class="download-btn android">
-                    <span>دانلود برای Android</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact">
-        <div class="container">
-            <h2 class="section-title">تماس با ما</h2>
-            <div class="contact-info">
-                <p>اگر می‌خواهید با ما تماس بگیرید، می‌توانید به آدرس <a href="mailto:info@irage.site">info@irage.site</a> ایمیل بفرستید.</p>
-                <p>برای گزارش یا بازخورد، می‌توانید به آدرس <a href="mailto:feedback@irage.site">feedback@irage.site</a> ایمیل بفرستید.</p>
             </div>
         </div>
     </section>
@@ -127,30 +62,27 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>ایراژ</h3>
-                    <p>تقویم مستقل ایرانی</p>
+                <div class="footer-links">
+                    <a href="pages/about.html">
+                        <span data-lang="fa">درباره ما</span>
+                        <span data-lang="en" style="display: none;">About Us</span>
+                    </a>
+                    <a href="pages/terms.html">
+                        <span data-lang="fa">شرایط استفاده</span>
+                        <span data-lang="en" style="display: none;">Terms & Conditions</span>
+                    </a>
+                    <a href="pages/policy.html">
+                        <span data-lang="fa">پالیسی</span>
+                        <span data-lang="en" style="display: none;">Policy</span>
+                    </a>
+                    <a href="pages/resources.html">
+                        <span data-lang="fa">ریسورس‌ها</span>
+                        <span data-lang="en" style="display: none;">Resources</span>
+                    </a>
                 </div>
-                <div class="footer-section">
-                    <h4>لینک‌های مفید</h4>
-                    <ul>
-                        <li><a href="pages/about.html">درباره ما</a></li>
-                        <li><a href="pages/resources.html">منابع</a></li>
-                        <li><a href="pages/terms.html">شرایط استفاده</a></li>
-                        <li><a href="pages/policy.html">پالیسی</a></li>
-                    </ul>
+                <div class="footer-bottom">
+                    <p>&copy; ۲۰۲۵ <span data-lang="fa">ایراژ. تمامی حقوق محفوظ است.</span><span data-lang="en" style="display: none;">Irage. All rights reserved.</span></p>
                 </div>
-                <div class="footer-section">
-                    <h4>تماس</h4>
-                    <ul>
-                        <li><a href="mailto:info@irage.site">info@irage.site</a></li>
-                        <li><a href="mailto:feedback@irage.site">feedback@irage.site</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; ۲۰۲۵ ایراژ. تمامی حقوق محفوظ است.</p>
-                <p>توسعه‌دهنده: تیم توسعه ایراژ</p>
             </div>
         </div>
     </footer>
@@ -159,20 +91,42 @@
     <div id="donationModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeDonationModal()">×</span>
-            <h2>حمایت از پروژه ایراژ</h2>
-            <p>با حمایت شما، می‌توانیم این پروژه را ادامه دهیم و بهبود بخشیم.</p>
+            <h2>
+                <span data-lang="fa">حمایت از پروژه ایراژ</span>
+                <span data-lang="en" style="display: none;">Support Irage Project</span>
+            </h2>
+            <p>
+                <span data-lang="fa">با حمایت شما، می‌توانیم این پروژه را ادامه دهیم و بهبود بخشیم.</span>
+                <span data-lang="en" style="display: none;">With your support, we can continue and improve this project.</span>
+            </p>
             <div class="donation-options">
                 <div class="donation-option">
-                    <h3>کریپتو</h3>
-                    <p>آدرس کیف پول:</p>
+                    <h3>
+                        <span data-lang="fa">کریپتو</span>
+                        <span data-lang="en" style="display: none;">Crypto</span>
+                    </h3>
+                    <p>
+                        <span data-lang="fa">آدرس کیف پول:</span>
+                        <span data-lang="en" style="display: none;">Wallet Address:</span>
+                    </p>
                     <div class="wallet-address">
                         <code id="walletAddress">0x...</code>
-                        <button class="btn-copy" onclick="copyWalletAddress()">کپی</button>
+                        <button class="btn-copy" onclick="copyWalletAddress()">
+                            <span data-lang="fa">کپی</span>
+                            <span data-lang="en" style="display: none;">Copy</span>
+                        </button>
                     </div>
                 </div>
                 <div class="donation-option">
-                    <h3>سایر روش‌ها</h3>
-                    <p>برای اطلاعات بیشتر با ما تماس بگیرید: <a href="mailto:info@irage.site">info@irage.site</a></p>
+                    <h3>
+                        <span data-lang="fa">سایر روش‌ها</span>
+                        <span data-lang="en" style="display: none;">Other Methods</span>
+                    </h3>
+                    <p>
+                        <span data-lang="fa">برای اطلاعات بیشتر با ما تماس بگیرید:</span>
+                        <span data-lang="en" style="display: none;">For more information, contact us:</span>
+                        <a href="mailto:info@irage.site">info@irage.site</a>
+                    </p>
                 </div>
             </div>
         </div>
