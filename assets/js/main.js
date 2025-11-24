@@ -20,6 +20,13 @@ function toggleLanguage() {
         el.style.display = newLang === 'en' ? '' : 'none';
     });
     
+    // Toggle logo images
+    const logoImages = document.querySelectorAll('.logo img');
+    logoImages.forEach(img => {
+        const imgLang = img.getAttribute('data-lang');
+        img.style.display = imgLang === newLang ? '' : 'none';
+    });
+    
     // Save language preference
     localStorage.setItem('preferredLanguage', newLang);
 }
@@ -44,6 +51,26 @@ document.addEventListener('DOMContentLoaded', function() {
         enElements.forEach(el => {
             el.style.display = savedLang === 'en' ? '' : 'none';
         });
+        
+        // Update logo images
+        const logoImages = document.querySelectorAll('.logo img');
+        logoImages.forEach(img => {
+            const imgLang = img.getAttribute('data-lang');
+            img.style.display = imgLang === savedLang ? '' : 'none';
+        });
+    }
+    
+    // Prevent scroll on home page
+    const isHomePage = window.location.pathname === '/' || 
+                      window.location.pathname.endsWith('index.html') ||
+                      window.location.pathname.endsWith('/');
+    
+    if (isHomePage) {
+        document.body.classList.add('no-scroll');
+        
+        // Prevent scroll on touch devices
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
     }
 });
 
@@ -139,4 +166,59 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Element Inspector: Option+Click to inspect elements
+document.addEventListener('click', function(e) {
+    if (e.altKey || e.metaKey) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const el = e.target;
+        
+        // Get element info
+        const tagName = el.tagName.toLowerCase();
+        const className = el.className ? (typeof el.className === 'string' ? el.className : Array.from(el.className).join(' ')) : '';
+        const id = el.id || '';
+        
+        // Build selector
+        let selector = tagName;
+        if (id) selector += '#' + id;
+        if (className) {
+            const classes = className.split(' ').filter(c => c.trim());
+            if (classes.length > 0) {
+                selector += '.' + classes.join('.');
+            }
+        }
+        
+        // Highlight element
+        const originalOutline = el.style.outline;
+        const originalBackground = el.style.backgroundColor;
+        el.style.outline = '3px solid #735BF2';
+        el.style.backgroundColor = 'rgba(115, 91, 242, 0.1)';
+        
+        // Log to console
+        console.group('🔍 Element Inspector');
+        console.log('Element:', el);
+        console.log('Tag:', tagName);
+        console.log('ID:', id || '(none)');
+        console.log('Classes:', className || '(none)');
+        console.log('Selector:', selector);
+        console.log('HTML:', el.outerHTML.substring(0, 200) + (el.outerHTML.length > 200 ? '...' : ''));
+        console.log('Computed Styles:', window.getComputedStyle(el));
+        console.groupEnd();
+        
+        // Remove highlight after 2 seconds
+        setTimeout(() => {
+            el.style.outline = originalOutline;
+            el.style.backgroundColor = originalBackground;
+        }, 2000);
+        
+        // Copy selector to clipboard (optional)
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(selector).then(() => {
+                console.log('✅ Selector copied to clipboard:', selector);
+            });
+        }
+    }
+}, true);
 

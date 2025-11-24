@@ -17,78 +17,108 @@
         <div class="container">
             <div class="header-content">
                 <a href="index.html" class="logo">
-                    <img src="assets/images/logo_centered.png" alt="ایراژ">
-                    <span data-lang="fa">ایراژ</span>
-                    <span data-lang="en" style="display: none;">Irage</span>
+                    <img src="assets/images/logo-en.svg" alt="Irage" data-lang="en" style="display: none;">
+                    <img src="assets/images/logo-fa.svg" alt="ایراژ" data-lang="fa">
                 </a>
+                <nav class="header-nav">
+                    <a href="pages/resources.html" class="nav-link">
+                        <span data-lang="fa">منابع</span>
+                        <span data-lang="en" style="display: none;">Resources</span>
+                    </a>
+                    <a href="pages/about.html" class="nav-link">
+                        <span data-lang="fa">درباره ما</span>
+                        <span data-lang="en" style="display: none;">About us</span>
+                    </a>
+                    <a href="pages/terms.html" class="nav-link">
+                        <span data-lang="fa">شرایط استفاده</span>
+                        <span data-lang="en" style="display: none;">Terms & Conditions</span>
+                    </a>
+                    <a href="pages/policy.html" class="nav-link">
+                        <span data-lang="fa">حریم خصوصی</span>
+                        <span data-lang="en" style="display: none;">Policy Privacy</span>
+                    </a>
+                    <a href="pages/donation.html" class="nav-link">
+                        <span data-lang="fa">حمایت مالی</span>
+                        <span data-lang="en" style="display: none;">Donation</span>
+                    </a>
+                </nav>
                 <div class="header-actions">
                     <button class="btn-lang" onclick="toggleLanguage()">
                         <span data-lang="fa">EN</span>
                         <span data-lang="en" style="display: none;">FA</span>
                     </button>
-                    <a href="pages/donation.html" class="btn-donation">
-                        <span data-lang="fa">حمایت</span>
-                        <span data-lang="en" style="display: none;">Donate</span>
-                    </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span data-lang="fa">ایراژ</span>
-                    <span data-lang="en" style="display: none;">Irage</span>
-                </h1>
-                <p class="hero-subtitle">
-                    <span data-lang="fa">تقویم مستقل ایرانی</span>
-                    <span data-lang="en" style="display: none;">Independent Iranian Calendar</span>
-                </p>
-                <p class="hero-description">
-                    <span data-lang="fa">اولین تقویم ملی‌گرای ایرانی که با صفر ارتباط با نظام جمهوری اسلامی ساخته شده است. این تقویم میراث کهن ما را حفظ می‌کند و در عین حال جنایات نظام را مستند می‌کند.</span>
-                    <span data-lang="en" style="display: none;">The first independent Iranian calendar built with zero connection to the Islamic Republic regime. This calendar preserves our ancient heritage while documenting the regime's crimes.</span>
-                </p>
+    <!-- Main Content - No Scroll -->
+    <main class="home-main">
+        <div class="home-container">
+            <!-- Decorative Shapes -->
+            <div class="decorative-shape shape-left"></div>
+            <div class="decorative-shape shape-right"></div>
+            
+            <!-- Hero Title -->
+            <h1 class="home-title">
+                <span data-lang="fa">به افتخار کسانی که برای آزادی جنگیدند</span>
+                <span data-lang="en" style="display: none;">Honoring those who fought for freedom</span>
+            </h1>
+            
+            <!-- Download Buttons -->
+            <div class="download-section">
+                <a href="#" class="download-btn app-store">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="store-icon">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    <div class="store-text">
+                        <span class="store-label">Download on the</span>
+                        <span class="store-name">App Store</span>
+                    </div>
+                </a>
+                <a href="#" class="download-btn google-play">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="store-icon">
+                        <path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm-4.95-4.95l-2.27 2.27L20.95 3.31l-2.27 2.27L11.86 10.17zm4.95 4.95l2.27-2.27-8.49-8.49-2.27 2.27 8.49 8.49z"/>
+                    </svg>
+                    <div class="store-text">
+                        <span class="store-label">GET IT ON</span>
+                        <span class="store-name">Google Play</span>
+                    </div>
+                </a>
             </div>
-            <div class="hero-banner">
-                <div class="banner-placeholder">
-                    <span data-lang="fa">اسکرین‌شات اپلیکیشن</span>
-                    <span data-lang="en" style="display: none;">App Screenshot</span>
+            
+            <!-- Direct Download Link -->
+            <a href="#" class="direct-download">
+                <span data-lang="fa">دانلود مستقیم اندروید</span>
+                <span data-lang="en" style="display: none;">Direct Download</span>
+            </a>
+            
+            <!-- App Screenshots -->
+            <div class="screenshots-container">
+                <div class="phone-screenshot">
+                    <div class="phone-frame">
+                        <div class="phone-content screenshot-1">
+                            <!-- Screenshot 1 placeholder -->
+                        </div>
+                    </div>
+                </div>
+                <div class="phone-screenshot">
+                    <div class="phone-frame">
+                        <div class="phone-content screenshot-2">
+                            <!-- Screenshot 2 placeholder -->
+                        </div>
+                    </div>
+                </div>
+                <div class="phone-screenshot">
+                    <div class="phone-frame">
+                        <div class="phone-content screenshot-3">
+                            <!-- Screenshot 3 placeholder -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-links">
-                    <a href="pages/about.html">
-                        <span data-lang="fa">درباره ما</span>
-                        <span data-lang="en" style="display: none;">About Us</span>
-                    </a>
-                    <a href="pages/terms.html">
-                        <span data-lang="fa">شرایط استفاده</span>
-                        <span data-lang="en" style="display: none;">Terms & Conditions</span>
-                    </a>
-                    <a href="pages/policy.html">
-                        <span data-lang="fa">پالیسی</span>
-                        <span data-lang="en" style="display: none;">Policy</span>
-                    </a>
-                    <a href="pages/resources.html">
-                        <span data-lang="fa">ریسورس‌ها</span>
-                        <span data-lang="en" style="display: none;">Resources</span>
-                    </a>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; ۲۰۲۵ <span data-lang="fa">ایراژ. تمامی حقوق محفوظ است.</span><span data-lang="en" style="display: none;">Irage. All rights reserved.</span></p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    </main>
 
     <!-- Donation Modal -->
     <div id="donationModal" class="modal">
