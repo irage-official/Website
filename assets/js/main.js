@@ -4,74 +4,88 @@ function toggleLanguage() {
     const currentLang = html.getAttribute('lang');
     const newLang = currentLang === 'fa' ? 'en' : 'fa';
     
-    // Update HTML lang and dir attributes
-    html.setAttribute('lang', newLang);
-    html.setAttribute('dir', newLang === 'fa' ? 'rtl' : 'ltr');
+    // Apply new language
+    applyLanguage(newLang);
+    
+    // Save language preference
+    localStorage.setItem('preferredLanguage', newLang);
+}
+
+// Function to detect user location and set default language
+async function detectUserLocation() {
+    try {
+        // Use ipapi.co to detect country (free, no API key needed)
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        
+        // Check if country is Iran (IR)
+        if (data.country_code === 'IR') {
+            return 'fa'; // Persian for Iran
+        } else {
+            return 'en'; // English for other countries
+        }
+    } catch (error) {
+        console.log('Location detection failed, using fallback:', error);
+        // Fallback: try to detect from browser language
+        const browserLang = navigator.language || navigator.userLanguage;
+        if (browserLang.startsWith('fa') || browserLang.startsWith('ar')) {
+            return 'fa';
+        }
+        return 'en'; // Default to English if detection fails
+    }
+}
+
+// Function to apply language settings
+function applyLanguage(lang) {
+    const html = document.getElementById('html-root');
+    
+    html.setAttribute('lang', lang);
+    html.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr');
     
     // Toggle visibility of language-specific elements
     const faElements = document.querySelectorAll('[data-lang="fa"]');
     const enElements = document.querySelectorAll('[data-lang="en"]');
     
     faElements.forEach(el => {
-        el.style.display = newLang === 'fa' ? '' : 'none';
+        el.style.display = lang === 'fa' ? '' : 'none';
     });
     
     enElements.forEach(el => {
-        el.style.display = newLang === 'en' ? '' : 'none';
+        el.style.display = lang === 'en' ? '' : 'none';
     });
     
-    // Toggle logo images
+    // Update logo images
     const logoImages = document.querySelectorAll('.logo img');
     logoImages.forEach(img => {
         const imgLang = img.getAttribute('data-lang');
-        img.style.display = imgLang === newLang ? '' : 'none';
+        img.style.display = imgLang === lang ? '' : 'none';
     });
     
-    // Toggle screenshots images
+    // Update screenshots images
     const screenshotsImages = document.querySelectorAll('.screenshots-image');
     screenshotsImages.forEach(img => {
         const imgLang = img.getAttribute('data-lang');
-        img.style.display = imgLang === newLang ? '' : 'none';
+        img.style.display = imgLang === lang ? '' : 'none';
     });
-    
-    // Save language preference
-    localStorage.setItem('preferredLanguage', newLang);
 }
 
 // Initialize language on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const savedLang = localStorage.getItem('preferredLanguage') || 'fa';
-    const html = document.getElementById('html-root');
+document.addEventListener('DOMContentLoaded', async function() {
+    // Check if user has a saved preference first
+    const savedLang = localStorage.getItem('preferredLanguage');
     
-    if (savedLang !== html.getAttribute('lang')) {
-        // Trigger language change if saved language is different
-        const faElements = document.querySelectorAll('[data-lang="fa"]');
-        const enElements = document.querySelectorAll('[data-lang="en"]');
+    if (savedLang) {
+        // Use saved preference
+        applyLanguage(savedLang);
+    } else {
+        // Detect user location and get default language
+        const detectedLang = await detectUserLocation();
         
-        html.setAttribute('lang', savedLang);
-        html.setAttribute('dir', savedLang === 'fa' ? 'rtl' : 'ltr');
+        // Apply detected language
+        applyLanguage(detectedLang);
         
-        faElements.forEach(el => {
-            el.style.display = savedLang === 'fa' ? '' : 'none';
-        });
-        
-        enElements.forEach(el => {
-            el.style.display = savedLang === 'en' ? '' : 'none';
-        });
-        
-        // Update logo images
-        const logoImages = document.querySelectorAll('.logo img');
-        logoImages.forEach(img => {
-            const imgLang = img.getAttribute('data-lang');
-            img.style.display = imgLang === savedLang ? '' : 'none';
-        });
-        
-        // Update screenshots images
-        const screenshotsImages = document.querySelectorAll('.screenshots-image');
-        screenshotsImages.forEach(img => {
-            const imgLang = img.getAttribute('data-lang');
-            img.style.display = imgLang === savedLang ? '' : 'none';
-        });
+        // Save detected language
+        localStorage.setItem('preferredLanguage', detectedLang);
     }
     
     // Prevent scroll on home page
