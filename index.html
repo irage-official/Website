@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css?v=2.0">
+    <link rel="stylesheet" href="assets/css/style.css" id="main-css">
     <link rel="icon" type="image/png" href="assets/images/logo_centered.png">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -139,7 +139,27 @@
         </div>
     </div>
 
-    <script src="assets/js/main.js?v=2.0"></script>
+    <script>
+        // Force reload CSS to bypass Cloudflare cache
+        (function() {
+            const timestamp = Date.now();
+            const cssLink = document.getElementById('main-css');
+            if (cssLink) {
+                cssLink.href = 'assets/css/style.css?v=' + timestamp;
+            }
+        })();
+    </script>
+    <script src="assets/js/main.js" id="main-js"></script>
+    <script>
+        // Force reload JS to bypass Cloudflare cache
+        (function() {
+            const timestamp = Date.now();
+            const jsScript = document.getElementById('main-js');
+            if (jsScript) {
+                jsScript.src = 'assets/js/main.js?v=' + timestamp;
+            }
+        })();
+    </script>
 </body>
 </html>
 
