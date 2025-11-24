@@ -53,6 +53,7 @@
     /* Brand Colors */
     --brand-main: var(--primary-500);
     --cnt-neutral-main: var(--gray-900);
+    --cnt-neutral-tertiary: var(--gray-600);
     --bg-default-main: #FFFFFF;
     
     /* Typography */
@@ -88,8 +89,16 @@
 
 html {
     scroll-behavior: smooth;
+    background: radial-gradient(125.96% 101.55% at 50% -1.55%, rgba(115, 91, 242, 0.02) 31.17%, rgba(115, 91, 242, 0.11) 100%), #FEFBFB;
+    background-attachment: fixed;
     background-color: var(--bg-default-main);
-    min-height: 100vh;
+    background-repeat: no-repeat;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 body {
@@ -97,13 +106,24 @@ body {
     font-size: 16px;
     line-height: 1.6;
     color: var(--gray-900);
-    background: radial-gradient(ellipse 100vw 200% at 50% 0%, rgba(115, 91, 242, 0.03), rgba(115, 91, 242, 0.16));
-    background-attachment: fixed;
-    background-color: var(--bg-default-main);
-    background-repeat: no-repeat;
+    background-color: transparent;
     direction: rtl;
     text-align: right;
     min-height: 100vh;
+}
+
+/* Body Content */
+.body-content {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 96px 48px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+    position: relative;
+    z-index: 1;
 }
 
 .container {
@@ -240,27 +260,23 @@ html[lang="fa"] .nav-link {
     background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
 }
 
-/* Home Main - No Scroll */
-.home-main {
-    width: 100%;
-    height: calc(100vh - 80px);
-    overflow: hidden;
-    position: relative;
-    background-color: transparent;
-}
 
-.home-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: var(--spacing-2xl) var(--spacing-m);
-    height: 100%;
+/* Content Section */
+.content-section {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    position: relative;
-    overflow: hidden;
-    min-height: 0;
+    padding: 0 96px;
+    box-sizing: border-box;
+}
+
+/* Actions Section */
+.actions-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 48px;
 }
 
 /* Decorative Shapes */
@@ -288,108 +304,121 @@ html[lang="fa"] .nav-link {
 
 /* Home Title */
 .home-title {
-    font-size: 4.5rem;
-    font-weight: 700;
-    color: var(--gray-900);
+    font-size: 100px;
+    line-height: 120%;
+    letter-spacing: -0.03em;
+    color: var(--cnt-neutral-main);
     text-align: center;
-    margin: var(--spacing-2xl) 0 var(--spacing-xl) 0;
-    line-height: 1.2;
+    margin: 0;
     z-index: 1;
     position: relative;
-    max-width: 900px;
+    max-width: 100%;
+    font-weight: 700; /* Bold for Persian */
 }
 
 html[lang="en"] .home-title {
     font-family: var(--font-english);
+    font-weight: 600; /* Semi-bold for English */
+}
+
+html[lang="fa"] .home-title {
+    font-family: var(--font-persian);
+    font-weight: 700; /* Bold for Persian */
 }
 
 /* Download Section */
 .download-section {
     display: flex;
-    gap: var(--spacing-l);
+    gap: 12px;
     justify-content: center;
     align-items: center;
     z-index: 1;
     position: relative;
-    margin: var(--spacing-l) 0 var(--spacing-s) 0;
+    margin: 0 0 12px 0;
     flex-wrap: wrap;
 }
 
-.download-btn {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-m);
-    background-color: var(--black);
-    color: var(--white);
-    padding: var(--spacing-m) var(--spacing-xl);
-    border-radius: var(--radius-m);
+/* Home page download buttons - no background */
+.home-main .download-btn,
+.download-section .download-btn {
+    display: inline-block;
+    background: none !important;
+    background-color: transparent !important;
+    background-image: none !important;
     text-decoration: none;
     transition: all 0.3s ease;
-    min-width: 180px;
-    font-family: var(--font-english);
-    box-shadow: var(--shadow-md);
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer;
+    box-shadow: none !important;
+    color: inherit !important;
+    font-weight: inherit !important;
+    font-size: inherit !important;
+    min-width: auto !important;
 }
 
-.download-btn:hover {
+.home-main .download-btn:hover,
+.download-section .download-btn:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-}
-
-.store-icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-}
-
-.store-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    line-height: 1.2;
-}
-
-.store-label {
-    font-size: 0.7rem;
     opacity: 0.9;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    box-shadow: none !important;
 }
 
-.store-name {
-    font-size: 1rem;
-    font-weight: 600;
+.store-image {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .direct-download {
-    color: var(--gray-600);
+    color: var(--cnt-neutral-tertiary);
     text-decoration: none;
-    font-size: 0.9rem;
-    margin-top: var(--spacing-s);
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.7px;
+    padding: 14px 24px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     z-index: 1;
     position: relative;
     transition: color 0.3s ease;
-    display: block;
     text-align: center;
-    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 .direct-download:hover {
     color: var(--primary-500);
 }
 
+/* Screenshots Section */
+.screenshots-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Screenshots Container */
 .screenshots-container {
     display: flex;
-    gap: var(--spacing-xl);
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     width: 100%;
-    max-width: 1200px;
+    max-width: 960px;
     z-index: 1;
     position: relative;
-    margin-top: auto;
-    padding-bottom: var(--spacing-xl);
-    flex-shrink: 0;
+}
+
+.screenshots-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .phone-screenshot {
@@ -638,7 +667,9 @@ html[lang="en"] .home-title {
     flex-wrap: wrap;
 }
 
-.download-btn {
+/* Download Section - Other pages */
+.download /* This is for other pages, not home page */
+.download .download-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -653,7 +684,7 @@ html[lang="en"] .home-title {
     min-width: 200px;
 }
 
-.download-btn:hover {
+.download .download-btn:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
 }

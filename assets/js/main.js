@@ -27,6 +27,13 @@ function toggleLanguage() {
         img.style.display = imgLang === newLang ? '' : 'none';
     });
     
+    // Toggle screenshots images
+    const screenshotsImages = document.querySelectorAll('.screenshots-image');
+    screenshotsImages.forEach(img => {
+        const imgLang = img.getAttribute('data-lang');
+        img.style.display = imgLang === newLang ? '' : 'none';
+    });
+    
     // Save language preference
     localStorage.setItem('preferredLanguage', newLang);
 }
@@ -55,6 +62,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update logo images
         const logoImages = document.querySelectorAll('.logo img');
         logoImages.forEach(img => {
+            const imgLang = img.getAttribute('data-lang');
+            img.style.display = imgLang === savedLang ? '' : 'none';
+        });
+        
+        // Update screenshots images
+        const screenshotsImages = document.querySelectorAll('.screenshots-image');
+        screenshotsImages.forEach(img => {
             const imgLang = img.getAttribute('data-lang');
             img.style.display = imgLang === savedLang ? '' : 'none';
         });
