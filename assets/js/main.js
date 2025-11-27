@@ -378,6 +378,18 @@ function applyLanguage(lang) {
         const imgLang = img.getAttribute('data-lang');
         img.style.display = imgLang === lang ? '' : 'none';
     });
+    
+    // Update page title
+    const titleElement = document.querySelector('title');
+    if (titleElement) {
+        const titleFa = titleElement.getAttribute('data-title-fa');
+        const titleEn = titleElement.getAttribute('data-title-en');
+        if (lang === 'en' && titleEn) {
+            titleElement.textContent = titleEn;
+        } else if (lang === 'fa' && titleFa) {
+            titleElement.textContent = titleFa;
+        }
+    }
 }
 
 // Initialize language on page load

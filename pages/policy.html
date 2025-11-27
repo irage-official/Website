@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="پالیسی حریم خصوصی ایراژ">
-    <title>پالیسی حریم خصوصی | ایراژ</title>
+    <title data-title-fa="حریم خصوصی | ایراژ" data-title-en="Privacy Policy | Irage">حریم خصوصی | ایراژ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -12,6 +12,45 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    <script>
+        // Prevent language flash - set language immediately before page renders
+        (function() {
+            try {
+                const savedLang = localStorage.getItem('preferredLanguage');
+                if (savedLang === 'en' || savedLang === 'fa') {
+                    const html = document.documentElement;
+                    html.setAttribute('lang', savedLang);
+                    html.setAttribute('dir', savedLang === 'fa' ? 'rtl' : 'ltr');
+                    
+                    // Hide/show language elements immediately
+                    const faElements = document.querySelectorAll('[data-lang="fa"]');
+                    const enElements = document.querySelectorAll('[data-lang="en"]');
+                    
+                    faElements.forEach(el => {
+                        el.style.display = savedLang === 'fa' ? '' : 'none';
+                    });
+                    
+                    enElements.forEach(el => {
+                        el.style.display = savedLang === 'en' ? '' : 'none';
+                    });
+                    
+                    // Update page title
+                    const titleElement = document.querySelector('title');
+                    if (titleElement) {
+                        const titleFa = titleElement.getAttribute('data-title-fa');
+                        const titleEn = titleElement.getAttribute('data-title-en');
+                        if (savedLang === 'en' && titleEn) {
+                            titleElement.textContent = titleEn;
+                        } else if (savedLang === 'fa' && titleFa) {
+                            titleElement.textContent = titleFa;
+                        }
+                    }
+                }
+            } catch(e) {
+                // Silently fail if localStorage is not available
+            }
+        })();
+    </script>
     <link rel="icon" type="image/png" href="../assets/images/logo_centered.png">
 </head>
 <body>
@@ -21,134 +60,79 @@
     <!-- Page Content -->
     <div class="body-content">
         <div class="page-content">
-            <h1>
+            <div class="page-headline">
+                <h1 class="page-title">
+                    <span class="page-title-icon">🔒</span>
+                    <span class="page-title-text">
                 <span data-lang="fa">پالیسی حریم خصوصی</span>
-                <span data-lang="en" style="display: none;">Privacy Policy</span>
+                        <span data-lang="en" style="display: none;">Privacy Policy</span>
+                    </span>
             </h1>
             
-            <p>
-                <span data-lang="fa">تیم توسعه ایراژ به حریم خصوصی شما احترام می‌گذارد. این پالیسی حریم خصوصی توضیح می‌دهد که چگونه اطلاعات شما را جمع‌آوری، استفاده و محافظت می‌کنیم.</span>
-                <span data-lang="en" style="display: none;">The Irage development team respects your privacy. This privacy policy explains how we collect, use, and protect your information.</span>
-            </p>
+                <p class="page-update-date">
+                    <span data-lang="fa">آخرین به‌روزرسانی: ۱۷ اکتبر ۲۰۲۵</span>
+                    <span data-lang="en" style="display: none;">Last updated 17 October, 2025</span>
+                </p>
+            </div>
 
-            <h2>
-                <span data-lang="fa">اطلاعاتی که جمع‌آوری می‌کنیم</span>
-                <span data-lang="en" style="display: none;">Information We Collect</span>
-            </h2>
-            
-            <h3>
-                <span data-lang="fa">اطلاعات شخصی</span>
-                <span data-lang="en" style="display: none;">Personal Information</span>
-            </h3>
-            <p>
-                <span data-lang="fa">ما اطلاعات شخصی شما را جمع‌آوری نمی‌کنیم مگر اینکه شما داوطلبانه آن را ارائه دهید، مانند زمانی که با ما از طریق ایمیل تماس می‌گیرید.</span>
-                <span data-lang="en" style="display: none;">We do not collect personal information from you unless you voluntarily provide it, such as when you contact us via email.</span>
-            </p>
+            <div class="content-sections-container">
+            <content-section
+                data-title-fa="۱. مرور کلی"
+                data-title-en="1. Overview"
+                data-description-fa="حریم خصوصی و امنیت شما عمیقاً محترم شمرده می‌شود.<br>این برنامه داده‌های شخصی، اطلاعات ردیابی یا هرگونه فعالیت کاربری قابل شناسایی را جمع‌آوری نمی‌کند.<br>این برنامه طوری طراحی شده است که کاملاً آفلاین عمل کند، مگر زمانی که شما به صورت دستی تصمیم به اشتراک‌گذاری یا ارسال اطلاعات بگیرید."
+                data-description-en="Your privacy and security are deeply respected.<br>This app does not collect personal data, tracking information, or any identifiable user activity.<br>It is designed to function entirely offline, except when you manually choose to share or submit information."
+            ></content-section>
 
-            <h3>
-                <span data-lang="fa">اطلاعات استفاده</span>
-                <span data-lang="en" style="display: none;">Usage Information</span>
-            </h3>
-            <p>
-                <span data-lang="fa">ما ممکن است اطلاعات غیرشخصی در مورد نحوه استفاده شما از اپلیکیشن جمع‌آوری کنیم، مانند نوع دستگاه، سیستم عامل و نسخه اپلیکیشن. این اطلاعات به صورت ناشناس جمع‌آوری می‌شود.</span>
-                <span data-lang="en" style="display: none;">We may collect non-personal information about how you use the application, such as device type, operating system, and application version. This information is collected anonymously.</span>
-            </p>
+            <content-section
+                data-title-fa="۲. جمع‌آوری اطلاعات"
+                data-title-en="2. Information Collection"
+                data-description-fa="<ul><li>این برنامه نیازی به حساب کاربری یا ورود به سیستم ندارد.</li><li>هیچ شناسه شخصی (ایمیل، نام، اطلاعات دستگاه) جمع‌آوری نمی‌شود.</li><li>اگر تصمیم به ارسال محتوا دارید، فقط داده‌هایی که ارائه می‌دهید و فقط برای تأیید سوابق ذخیره می‌شوند. (به زودی)</li></ul>"
+                data-description-en="<ul><li>The App does not require user accounts or login.</li><li>No personal identifiers (email, name, device data) are collected.</li><li>If you choose to submit content, only the data you provide will be stored, and only for the purpose of record verification. (coming soon)</li></ul>"
+            ></content-section>
 
-            <h2>
-                <span data-lang="fa">چگونه از اطلاعات استفاده می‌کنیم</span>
-                <span data-lang="en" style="display: none;">How We Use Information</span>
-            </h2>
-            <p>
-                <span data-lang="fa">ما از اطلاعات جمع‌آوری شده برای:</span>
-                <span data-lang="en" style="display: none;">We use the collected information for:</span>
-            </p>
-            <ul>
-                <li>
-                    <span data-lang="fa">بهبود و توسعه اپلیکیشن</span>
-                    <span data-lang="en" style="display: none;">Improving and developing the application</span>
-                </li>
-                <li>
-                    <span data-lang="fa">ارائه پشتیبانی به کاربران</span>
-                    <span data-lang="en" style="display: none;">Providing support to users</span>
-                </li>
-                <li>
-                    <span data-lang="fa">درک نحوه استفاده از اپلیکیشن</span>
-                    <span data-lang="en" style="display: none;">Understanding how the application is used</span>
-                </li>
-                <li>
-                    <span data-lang="fa">رفع مشکلات و باگ‌ها</span>
-                    <span data-lang="en" style="display: none;">Fixing issues and bugs</span>
-                </li>
-            </ul>
+            <content-section
+                data-title-fa="۳. ذخیره‌سازی و حفاظت از داده‌ها (در نسخه بعدی)"
+                data-title-en="3. Data Storage and Protection (next version)"
+                data-description-fa="تمام سوابق جمع‌آوری‌شده به‌طور ایمن روی سرورهای رمزگذاری‌شده ذخیره می‌شوند و دسترسی به آن‌ها محدود به تیم تأیید است.<br>هیچ سرویس شخص ثالثی به اطلاعات شما دسترسی ندارد."
+                data-description-en="All collected records are securely stored on encrypted servers, with access limited to the verification team.<br>No third-party service has access to your information."
+            ></content-section>
 
-            <h2>
-                <span data-lang="fa">اشتراک‌گذاری اطلاعات</span>
-                <span data-lang="en" style="display: none;">Information Sharing</span>
+            <content-section
+                data-title-fa="۴. تجزیه و تحلیل و ردیابی"
+                data-title-en="4. Analytics and Tracking"
+                data-description-fa="ما از ابزارهای تجزیه و تحلیل، تبلیغات، کوکی‌ها یا هیچ نرم‌افزار ردیابی استفاده نمی‌کنیم."
+                data-description-en="We do not use analytics tools, ads, cookies, or any tracking software."
+            ></content-section>
+
+            <content-section
+                data-title-fa="۵. پیوندهای خارجی"
+                data-title-en="5. External Links"
+                data-description-fa="برخی از صفحات ممکن است حاوی پیوندهایی به بایگانی‌های یادبود تأیید شده یا پروژه‌های مستندسازی (مثلاً مرکز اسناد حقوق بشر) باشند.<br>این سایت‌های خارجی تحت سیاست‌های حفظ حریم خصوصی خود اداره می‌شوند.<br>ما شما را تشویق می‌کنیم که هنگام بازدید از پیوندهای خارجی، آنها را مرور کنید."
+                data-description-en="Some pages may contain links to verified memorial archives or documentation projects (e.g., Human Rights Documentation Center).<br>These external sites are governed by their own privacy policies.<br>We encourage you to review them when you visit external links."
+            ></content-section>
+
+            <content-section
+                data-title-fa="۶. تغییرات در سیاست"
+                data-title-en="6. Changes to Policy"
+                data-description-fa="ما ممکن است این سیاست حفظ حریم خصوصی را برای بهبود شفافیت و حفاظت به‌روزرسانی کنیم.<br>همه به‌روزرسانی‌ها در بخش <a href='#' style='font-weight: 500;'>به‌روزرسانی‌های حریم خصوصی</a> قابل مشاهده خواهند بود."
+                data-description-en="We may update this Privacy Policy to improve transparency and protection.<br>All updates will be visible under <a href='#' style='font-weight: 500;'>Privacy Updates</a>."
+            ></content-section>
+            </div>
+
+            <section class="terms-section terms-contact">
+                <h2>
+                    <span data-lang="fa">سوالات و نظرات</span>
+                    <span data-lang="en" style="display: none;">Questions and comments</span>
             </h2>
             <p>
-                <span data-lang="fa">ما اطلاعات شخصی شما را به هیچ شخص ثالثی نمی‌فروشیم، اجاره نمی‌دهیم یا به اشتراک نمی‌گذاریم. ما فقط اطلاعات را در موارد زیر به اشتراک می‌گذاریم:</span>
-                <span data-lang="en" style="display: none;">We do not sell, rent, or share your personal information with any third parties. We only share information in the following cases:</span>
+                    <span data-lang="fa">
+                        برای سوالات، اصلاحات یا ارسال داده‌های تأیید شده، از طریق تماس با ما در <a href="mailto:support@irage.site">support@irage.site</a> با ما در ارتباط باشید.
+                    </span>
+                    <span data-lang="en" style="display: none;">
+                        For questions, corrections, or verified data submissions, reach out via contact us at <a href="mailto:support@irage.site">support@irage.site</a>.
+                    </span>
             </p>
-            <ul>
-                <li>
-                    <span data-lang="fa">وقتی قانوناً ملزم به انجام این کار باشیم</span>
-                    <span data-lang="en" style="display: none;">When legally required to do so</span>
-                </li>
-                <li>
-                    <span data-lang="fa">برای محافظت از حقوق و امنیت ما</span>
-                    <span data-lang="en" style="display: none;">To protect our rights and security</span>
-                </li>
-                <li>
-                    <span data-lang="fa">با رضایت صریح شما</span>
-                    <span data-lang="en" style="display: none;">With your explicit consent</span>
-                </li>
-            </ul>
-
-            <h2>
-                <span data-lang="fa">ذخیره‌سازی داده‌ها</span>
-                <span data-lang="en" style="display: none;">Data Storage</span>
-            </h2>
-            <p>
-                <span data-lang="fa">داده‌های اپلیکیشن به صورت محلی روی دستگاه شما ذخیره می‌شوند. ما داده‌های شخصی شما را روی سرورهای خود ذخیره نمی‌کنیم.</span>
-                <span data-lang="en" style="display: none;">Application data is stored locally on your device. We do not store your personal data on our servers.</span>
-            </p>
-
-            <h2>
-                <span data-lang="fa">امنیت</span>
-                <span data-lang="en" style="display: none;">Security</span>
-            </h2>
-            <p>
-                <span data-lang="fa">ما اقدامات امنیتی مناسب را برای محافظت از اطلاعات شما در برابر دسترسی غیرمجاز، تغییر، افشا یا تخریب انجام می‌دهیم. با این حال، هیچ روش انتقال از طریق اینترنت یا ذخیره‌سازی الکترونیکی ۱۰۰٪ امن نیست.</span>
-                <span data-lang="en" style="display: none;">We take appropriate security measures to protect your information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure.</span>
-            </p>
-
-            <h2>
-                <span data-lang="fa">مستقل بودن</span>
-                <span data-lang="en" style="display: none;">Independence</span>
-            </h2>
-            <p>
-                <span data-lang="fa">ما تأکید می‌کنیم که ایراژ یک پروژه مستقل است که هیچ ارتباطی با نظام جمهوری اسلامی ندارد. ما اطلاعات کاربران را با هیچ نهاد دولتی یا سازمانی به اشتراک نمی‌گذاریم.</span>
-                <span data-lang="en" style="display: none;">We emphasize that Irage is an independent project with no connection to the Islamic Republic regime. We do not share user information with any government entity or organization.</span>
-            </p>
-
-            <h2>
-                <span data-lang="fa">تماس با ما</span>
-                <span data-lang="en" style="display: none;">Contact Us</span>
-            </h2>
-            <p>
-                <span data-lang="fa">اگر سؤالی در مورد این پالیسی حریم خصوصی دارید، لطفاً با ما تماس بگیرید:</span>
-                <span data-lang="en" style="display: none;">If you have any questions about this privacy policy, please contact us:</span>
-            </p>
-            <p>
-                <span data-lang="fa">ایمیل:</span>
-                <span data-lang="en" style="display: none;">Email:</span>
-                <a href="mailto:info@irage.site">info@irage.site</a>
-            </p>
-
-            <p style="margin-top: 2rem; color: var(--cnt-neutral-tertiary); font-size: 0.9rem;">
-                <span data-lang="fa">آخرین به‌روزرسانی: ۲۰۲۵</span>
-                <span data-lang="en" style="display: none;">Last updated: 2025</span>
-            </p>
+            </section>
         </div>
     </div>
 

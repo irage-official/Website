@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="حمایت از پروژه ایراژ">
-    <title>حمایت از پروژه | ایراژ</title>
+    <title data-title-fa="حمایت از پروژه | ایراژ" data-title-en="Support the Project | Irage">حمایت از پروژه | ایراژ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -12,6 +12,45 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    <script>
+        // Prevent language flash - set language immediately before page renders
+        (function() {
+            try {
+                const savedLang = localStorage.getItem('preferredLanguage');
+                if (savedLang === 'en' || savedLang === 'fa') {
+                    const html = document.documentElement;
+                    html.setAttribute('lang', savedLang);
+                    html.setAttribute('dir', savedLang === 'fa' ? 'rtl' : 'ltr');
+                    
+                    // Hide/show language elements immediately
+                    const faElements = document.querySelectorAll('[data-lang="fa"]');
+                    const enElements = document.querySelectorAll('[data-lang="en"]');
+                    
+                    faElements.forEach(el => {
+                        el.style.display = savedLang === 'fa' ? '' : 'none';
+                    });
+                    
+                    enElements.forEach(el => {
+                        el.style.display = savedLang === 'en' ? '' : 'none';
+                    });
+                    
+                    // Update page title
+                    const titleElement = document.querySelector('title');
+                    if (titleElement) {
+                        const titleFa = titleElement.getAttribute('data-title-fa');
+                        const titleEn = titleElement.getAttribute('data-title-en');
+                        if (savedLang === 'en' && titleEn) {
+                            titleElement.textContent = titleEn;
+                        } else if (savedLang === 'fa' && titleFa) {
+                            titleElement.textContent = titleFa;
+                        }
+                    }
+                }
+            } catch(e) {
+                // Silently fail if localStorage is not available
+            }
+        })();
+    </script>
     <link rel="icon" type="image/png" href="../assets/images/logo_centered.png">
 </head>
 <body>
