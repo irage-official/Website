@@ -115,15 +115,35 @@ class ContentSection extends HTMLElement {
             let titleFaProcessed = titleFa;
             let titleEnProcessed = titleEn;
             
+            // Extract number and wrap it in a span with fixed width
+            // Pattern: "۱. مقدمه" or "1. Introduction"
+            if (titleFa) {
+                const faMatch = titleFa.match(/^([۰-۹]+)\.\s*(.+)$/);
+                if (faMatch) {
+                    const number = faMatch[1];
+                    const rest = faMatch[2];
+                    titleFaProcessed = `<span class="section-number">${number}.</span>${rest}`;
+                }
+            }
+            
+            if (titleEn) {
+                const enMatch = titleEn.match(/^(\d+)\.\s*(.+)$/);
+                if (enMatch) {
+                    const number = enMatch[1];
+                    const rest = enMatch[2];
+                    titleEnProcessed = `<span class="section-number">${number}.</span>${rest}`;
+                }
+            }
+            
             // Extract main title and coming soon text for Persian
-            if (titleFa && titleFa.includes(comingSoonFa)) {
-                const parts = titleFa.split(comingSoonFa);
+            if (titleFa && titleFaProcessed.includes(comingSoonFa)) {
+                const parts = titleFaProcessed.split(comingSoonFa);
                 titleFaProcessed = parts[0].trim() + ' <span class="coming-soon">' + comingSoonFa + '</span>';
             }
             
             // Extract main title and coming soon text for English
-            if (titleEn && titleEn.includes(comingSoonEn)) {
-                const parts = titleEn.split(comingSoonEn);
+            if (titleEn && titleEnProcessed.includes(comingSoonEn)) {
+                const parts = titleEnProcessed.split(comingSoonEn);
                 titleEnProcessed = parts[0].trim() + ' <span class="coming-soon">' + comingSoonEn + '</span>';
             }
             

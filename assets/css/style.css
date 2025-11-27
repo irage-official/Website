@@ -1358,6 +1358,17 @@ content-section {
     text-align: left; /* Default LTR */
 }
 
+/* Fixed width for section numbers */
+.content-section-title .section-number {
+    display: inline-block;
+    width: 22px;
+    text-align: left;
+}
+
+html[lang="fa"] .content-section-title .section-number {
+    text-align: right;
+}
+
 /* Style for "coming soon" text in parentheses */
 .content-section-title .coming-soon {
     color: var(--cnt-neutral-fourth);
