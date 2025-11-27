@@ -51,6 +51,18 @@
             }
         })();
     </script>
+    <style>
+        /* Prevent FOUC - hide body until CSS and JS are loaded */
+        body {
+            visibility: hidden;
+            opacity: 0;
+        }
+        body.loaded {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.2s ease-in;
+        }
+    </style>
     <link rel="icon" type="image/png" href="../assets/images/logo_centered.png">
 </head>
 <body>
@@ -60,106 +72,115 @@
     <!-- Page Content -->
     <div class="body-content">
         <div class="page-content">
-        <h1>درباره ایراژ</h1>
-        
-        <p>
-            <strong>ایراژ</strong> (میراث ایرانی) یک تقویم مستقل و جامعه‌محور است که توسط افرادی ساخته شده که به ایران باور دارند — ایران واقعی. 
-            نه نسخه‌ای که توسط نظام جمهوری اسلامی بازنویسی شده، بلکه ایران باستان، غرور، فرهنگ، هویت و آزادی.
-        </p>
-
-        <h2>ما کی هستیم؟</h2>
-        <p>
-            ما اولین اپلیکیشن تقویم ملی‌گرای ایرانی هستیم که با صفر ارتباط با نظام جمهوری اسلامی ساخته شده است.
-        </p>
-
-        <ul>
-            <li>بدون حمایت مالی</li>
-            <li>بدون ارتباط سیاسی</li>
-            <li>بدون تبلیغات</li>
-        </ul>
-
-        <p>
-            فقط عشق خالص به وطن و تعهد به گفتن حقیقت.
-        </p>
-
-        <h2>دو داستان قدرتمند</h2>
-        
-        <h3>⭐ ۱. میراث ما</h3>
-        <p>
-            جشنواره‌ها، سنت‌ها، اسطوره‌ها، قهرمانان و فرهنگ کهن که هویت واقعی ما را به عنوان یک ملت شکل داده‌اند، 
-            مدتها قبل از اینکه این نظام وجود داشته باشد.
-        </p>
-
-        <h3>🔥 ۲. واقعیت ما</h3>
-        <p>
-            یک سند روشن و بدون سانسور از جنایات انجام شده توسط نظام جمهوری اسلامی علیه مردم ایران — 
-            تا هیچ زندگی، هیچ نام و هیچ بی‌عدالتی هرگز فراموش نشود.
-        </p>
-
-        <h2>پیام ما</h2>
-        <p>
-            با هم، آنها چیزی اساسی را به ما یادآوری می‌کنند:<br>
-            ما قبل از این نظام هویتی داشتیم. و مدتها پس از آن نیز هویتی خواهیم داشت.
-        </p>
-
-        <p>
-            این اپلیکیشن به صورت ناشناس، توسط ایرانیانی ساخته شده که حقیقت را بر ترس انتخاب کرده‌اند — 
-            افرادی که می‌خواهند هر کاربری غرور ایرانی بودن و مسئولیت یادآوری کسانی که جنگیدند، رنج کشیدند یا ساکت شدند را احساس کند.
-        </p>
-
-        <h2>این فقط یک تقویم نیست</h2>
-        <p>
-            این یک عمل مقاومت آرام است.<br>
-            یک ادای احترام به میراث ما.<br>
-            یک یادآوری از قدرت جمعی ما.<br>
-            و یک گام کوچک به سوی ایران شایسته‌ای که سزاوارش هستیم.
-        </p>
-
-        <p>
-            اگر شما اینجا هستید، شما هم بخشی از این مأموریت هستید.
-        </p>
-
-        <h2>تماس با ما</h2>
-        <p>
-            اگر می‌خواهید با ما تماس بگیرید، می‌توانید به آدرس <a href="mailto:info@irage.site">info@irage.site</a> ایمیل بفرستید.
-        </p>
-        <p>
-            برای گزارش یا بازخورد، می‌توانید به آدرس <a href="mailto:feedback@irage.site">feedback@irage.site</a> ایمیل بفرستید.
-        </p>
-
-        <p>
-            <strong>توسعه‌دهنده:</strong> تیم توسعه ایراژ
-        </p>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>ایراژ</h3>
-                    <p>تقویم مستقل ایرانی</p>
-                </div>
-                <div class="footer-section">
-                    <h4>لینک‌های مفید</h4>
-                    <ul>
-                        <li><a href="about.html">درباره ما</a></li>
-                        <li><a href="resources.html">منابع</a></li>
-                        <li><a href="terms.html">شرایط استفاده</a></li>
-                        <li><a href="policy.html">پالیسی</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>تماس</h4>
-                    <ul>
-                        <li><a href="mailto:info@irage.site">info@irage.site</a></li>
-                        <li><a href="mailto:feedback@irage.site">feedback@irage.site</a></li>
-                    </ul>
-                </div>
+            <div class="page-headline">
+                <h1 class="page-title">
+                    <span class="page-title-icon">🕊️</span>
+                    <span class="page-title-text">
+                <span data-lang="fa">درباره ما</span>
+                        <span data-lang="en" style="display: none;">About Us</span>
+                    </span>
+            </h1>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; ۲۰۲۵ ایراژ. تمامی حقوق محفوظ است.</p>
-                <p>توسعه‌دهنده: تیم توسعه ایراژ</p>
+
+            <div class="content-sections-container">
+            <content-section
+                data-title-fa=""
+                data-title-en=""
+                data-description-fa="«میراث ایران» یک برنامه تقویم مستقل و ساخته شده توسط جامعه است که توسط افرادی که به ایران - ایران واقعی - اعتقاد دارند، ایجاد شده است.<br>نه نسخه‌ای که توسط رژیم جمهوری اسلامی بازنویسی شده است، بلکه ایرانی با غرور، فرهنگ، هویت و آزادی باستانی."
+                data-description-en="The Irage (Iranian Heritage) is a community-built, independent calendar app created by people who believe in Iran — the real Iran.<br>Not the version rewritten by the Islamic Republic regime, but the Iran of ancient pride, culture, identity, and freedom."
+            ></content-section>
+            <content-section
+                data-title-fa=""
+                data-title-en=""
+                data-description-fa="ما اولین اپلیکیشن تقویم ملی‌گرایانه ایرانی هستیم که هیچ ارتباطی با جمهوری اسلامی ندارد.<br><ul><li>بدون حمایت مالی</li><li>بدون روابط سیاسی</li><li>بدون تبلیغات</li></ul>فقط عشق خالص به میهن و تعهد به بیان حقیقت."
+                data-description-en="We are the first Iranian nationalist calendar app with zero connection to the Islamic Republic.<br><ul><li>No sponsorship</li><li>No political ties</li><li>No propaganda</li></ul>Just pure love for our homeland and a commitment to tell the truth."
+            ></content-section>
+            <content-section
+                data-title-fa=""
+                data-title-en=""
+                data-description-fa="این پروژه دو داستان قدرتمند را گرد هم می‌آورد:"
+                data-description-en="This project brings together two powerful stories:"
+            ></content-section>
+            <content-section
+                data-title-fa="⭐ ۱. میراث ما"
+                data-title-en="⭐ 1. Our Heritage"
+                data-description-fa="جشن‌ها، سنت‌ها، اسطوره‌ها، قهرمانان و فرهنگ باستانی که مدت‌ها پیش از وجود رژیم، هویت واقعی ما را به عنوان یک ملت شکل داده‌اند."
+                data-description-en="The festivals, traditions, myths, heroes, and ancient culture that shaped who we truly are as a nation long before the regime existed."
+            ></content-section>
+            <content-section
+                data-title-fa="🔥 ۲. واقعیت ما"
+                data-title-en="🔥 2. Our Reality"
+                data-description-fa="یک پرونده روشن و بدون سانسور از جنایاتی که رژیم جمهوری اسلامی علیه مردم ایران مرتکب شده است - به طوری که هیچ زندگی، هیچ نامی و هیچ بی‌عدالتی هرگز فراموش نشود."
+                data-description-en="A clear, uncensored record of the crimes committed by the Islamic Republic regime against the people of Iran — so no life, no name, and no injustice is ever forgotten."
+            ></content-section>
+            <content-section
+                data-title-fa=""
+                data-title-en=""
+                data-description-fa="آنها در کنار هم، نکته‌ای اساسی را به ما یادآوری می‌کنند: ما قبل از این رژیم هویتی داشتیم. و مدت‌ها پس از آن نیز هویتی خواهیم داشت."
+                data-description-en="Together, they remind us of something essential:<br>We had an identity before this regime. And we will have one long after it."
+            ></content-section>
+            <content-section
+                data-title-fa=""
+                data-title-en=""
+                data-description-fa="این اپلیکیشن به صورت ناشناس، توسط ایرانیانی ساخته شده است که حقیقت را به ترس ترجیح دادند - افرادی که می‌خواهند هر کاربر به ایرانی بودن خود افتخار کند و مسئولیت به یاد آوردن کسانی را که جنگیدند، رنج کشیدند یا ساکت شدند، احساس کند."
+                data-description-en="This app is built anonymously, by Iranians who chose truth over fear — people who want every user to feel the pride of being Iranian and the responsibility of remembering those who fought, suffered, or were silenced."
+            ></content-section>
+            <content-section
+                data-title-fa=""
+                data-title-en=""
+                data-description-fa=""
+                data-description-en=""
+                data-note-fa="اگر اینجا هستید، شما هم بخشی از آن ماموریت هستید."
+                data-note-en="If you're here, you're part of that mission too."
+            ></content-section>
+            <content-section
+                data-title-fa=""
+                data-title-en=""
+                data-description-fa="این فقط یک تقویم نیست.<br>این یک عمل آرام مقاومت است.<br>ادای احترام به میراث ما.<br>یادآوری قدرت جمعی ما.<br>و گامی کوچک به سوی ایرانی که شایسته آن هستیم."
+                data-description-en="This isn't just a calendar.<br>It's a quiet act of resistance.<br>A tribute to our heritage.<br>A reminder of our collective strength.<br>And a small step toward the Iran we deserve."
+            ></content-section>
+            <content-section
+                data-title-fa=""
+                data-title-en=""
+                data-description-fa="توسعه‌دهنده: تیم توسعه ایراژ"
+                data-description-en="Developer: Irage Development Team"
+                data-muted="true"
+            ></content-section>
+            </div>
+
+            <div class="contact-social-wrapper">
+                <section class="terms-section terms-contact">
+                    <h2>
+                        <span data-lang="fa">تماس با ما</span>
+                        <span data-lang="en" style="display: none;">Contact us</span>
+                </h2>
+                <p>
+                        <span data-lang="fa">
+                            اگر مایل به ارتباط با ما هستید، می‌توانید به آدرس <a href="mailto:info@irage.site">info@irage.site</a> ایمیل ارسال کنید. همچنین، در صورت داشتن هرگونه گزارش یا بازخورد، می‌توانید از طریق ایمیل <a href="mailto:feedback@irage.site">feedback@irage.site</a> با ما تماس بگیرید.
+                        </span>
+                        <span data-lang="en" style="display: none;">
+                            If you'd like to reach out to us, you can send an email to <a href="mailto:info@irage.site">info@irage.site</a>. Alternatively, if you have any reports or feedback, you can contact us via the email <a href="mailto:feedback@irage.site">feedback@irage.site</a>.
+                        </span>
+                </p>
+                </section>
+
+                <section class="terms-section terms-social">
+                <h2 class="social-title">
+                    <span data-lang="fa">ما را دنبال کنید</span>
+                    <span data-lang="en" style="display: none;">follow us on</span>
+                </h2>
+                <div class="social-buttons">
+                    <a href="https://x.com/irage_official" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="X (Twitter)">
+                        <img src="../assets/icons/x-social.svg" alt="X" />
+                    </a>
+                    <a href="https://instagram.com/irage.site" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="Instagram">
+                        <img src="../assets/icons/instagram.svg" alt="Instagram" />
+                    </a>
+                    <a href="https://github.com/irage-official/Calendar" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="GitHub">
+                        <img src="../assets/icons/gifhub.svg" alt="GitHub" />
+                    </a>
+                </div>
+            </section>
             </div>
         </div>
     </div>
@@ -183,6 +204,47 @@
             if (jsScript) {
                 jsScript.src = '../assets/js/main.js?v=' + timestamp;
             }
+        })();
+    </script>
+    <script>
+        // Show body after CSS and JS are fully loaded
+        (function() {
+            function showBody() {
+                document.body.classList.add('loaded');
+            }
+            
+            // Check if CSS is loaded
+            function checkCSSLoaded() {
+                const cssLink = document.getElementById('main-css');
+                if (cssLink) {
+                    if (cssLink.sheet) {
+                        return true;
+                    }
+                    // Fallback: wait a bit for CSS to load
+                    return false;
+                }
+                return true;
+            }
+            
+            // Wait for both CSS and JS to load
+            if (document.readyState === 'complete') {
+                // Page already loaded
+                if (checkCSSLoaded()) {
+                    showBody();
+                } else {
+                    // Wait a bit more for CSS
+                    setTimeout(showBody, 100);
+                }
+            } else {
+                // Wait for page load
+                window.addEventListener('load', function() {
+                    // Small delay to ensure CSS is applied
+                    setTimeout(showBody, 50);
+                });
+            }
+            
+            // Fallback: show after 1 second max
+            setTimeout(showBody, 1000);
         })();
     </script>
 </body>

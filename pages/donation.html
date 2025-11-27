@@ -51,6 +51,18 @@
             }
         })();
     </script>
+    <style>
+        /* Prevent FOUC - hide body until CSS and JS are loaded */
+        body {
+            visibility: hidden;
+            opacity: 0;
+        }
+        body.loaded {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.2s ease-in;
+        }
+    </style>
     <link rel="icon" type="image/png" href="../assets/images/logo_centered.png">
 </head>
 <body>
@@ -129,6 +141,23 @@
             const timestamp = Date.now();
             const jsScript = document.getElementById('main-js');
             if (jsScript) jsScript.src = '../assets/js/main.js?v=' + timestamp;
+        })();
+    </script>
+    <script>
+        // Show body after CSS and JS are fully loaded
+        (function() {
+            function showBody() {
+                document.body.classList.add('loaded');
+            }
+            
+            if (document.readyState === 'complete') {
+                setTimeout(showBody, 50);
+            } else {
+                window.addEventListener('load', function() {
+                    setTimeout(showBody, 50);
+                });
+            }
+            setTimeout(showBody, 1000);
         })();
     </script>
 </body>

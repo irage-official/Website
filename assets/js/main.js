@@ -105,6 +105,7 @@ class ContentSection extends HTMLElement {
         const descriptionEn = this.getAttribute('data-description-en') || '';
         const noteFa = this.getAttribute('data-note-fa') || '';
         const noteEn = this.getAttribute('data-note-en') || '';
+        const isMuted = this.getAttribute('data-muted') === 'true';
         
         let titleHTML = '';
         if (titleFa || titleEn) {
@@ -163,13 +164,15 @@ class ContentSection extends HTMLElement {
             
             // Process Persian text
             if (descriptionFa) {
-                // Make "ایراژ" or "ایرج" bold (handle both with and without quotes)
-                descriptionFaProcessed = descriptionFaProcessed.replace(
-                    /(«?)(ایراژ|ایرج)(»?)/g,
-                    (match, openQuote, word, closeQuote) => {
-                        return (openQuote || '') + '<strong>' + word + '</strong>' + (closeQuote || '');
-                    }
-                );
+                // Make "ایراژ" or "ایرج" bold (handle both with and without quotes) - skip if muted
+                if (!isMuted) {
+                    descriptionFaProcessed = descriptionFaProcessed.replace(
+                        /(«?)(ایراژ|ایرج)(»?)/g,
+                        (match, openQuote, word, closeQuote) => {
+                            return (openQuote || '') + '<strong>' + word + '</strong>' + (closeQuote || '');
+                        }
+                    );
+                }
                 // Style "(میراث ایران)" with color
                 descriptionFaProcessed = descriptionFaProcessed.replace(
                     /\(میراث ایران\)/g,
@@ -179,13 +182,15 @@ class ContentSection extends HTMLElement {
             
             // Process English text
             if (descriptionEn) {
-                // Make "Irage" bold (handle both with and without quotes)
-                descriptionEnProcessed = descriptionEnProcessed.replace(
-                    /("?)(Irage)("?)/g,
-                    (match, openQuote, word, closeQuote) => {
-                        return (openQuote || '') + '<strong>' + word + '</strong>' + (closeQuote || '');
-                    }
-                );
+                // Make "Irage" bold (handle both with and without quotes) - skip if muted
+                if (!isMuted) {
+                    descriptionEnProcessed = descriptionEnProcessed.replace(
+                        /("?)(Irage)("?)/g,
+                        (match, openQuote, word, closeQuote) => {
+                            return (openQuote || '') + '<strong>' + word + '</strong>' + (closeQuote || '');
+                        }
+                    );
+                }
                 // Style "(Iranian Heritage)" with color
                 descriptionEnProcessed = descriptionEnProcessed.replace(
                     /\(Iranian Heritage\)/g,

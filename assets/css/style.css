@@ -1391,15 +1391,31 @@ html[lang="en"] .content-section-title {
     flex-direction: column;
     gap: 8px;
     margin-top: 6px; /* Gap between title and context */
-    padding-left: 20px; /* 22px padding on left for LTR */
+    margin-bottom: 0; /* No margin at bottom */
+    padding-left: 0;
 }
 
 html[dir="rtl"] .content-section-context {
     padding-left: 0;
-    padding-right: 22px; /* 22px padding on right for RTL */
+    padding-right: 0;
 }
 
 html[dir="ltr"] .content-section-context {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Add padding only when section has a title */
+.content-section:has(.content-section-title) .content-section-context {
+    padding-left: 22px;
+}
+
+html[dir="rtl"] .content-section:has(.content-section-title) .content-section-context {
+    padding-left: 0;
+    padding-right: 22px;
+}
+
+html[dir="ltr"] .content-section:has(.content-section-title) .content-section-context {
     padding-left: 22px;
     padding-right: 0;
 }
@@ -1446,6 +1462,17 @@ html[lang="fa"] .content-section-description ol {
 /* Style for heritage text */
 .content-section-description .heritage-text {
     color: var(--cnt-neutral-tertiary);
+}
+
+/* Style for muted sections (developer credit) */
+content-section[data-muted="true"] .content-section-description {
+    color: var(--cnt-neutral-tertiary);
+    opacity: 0.8;
+}
+
+content-section[data-muted="true"] .content-section-description strong,
+content-section[data-muted="true"] .content-section-description b {
+    font-weight: 400;
 }
 
 html[lang="fa"] .content-section-description {
@@ -1516,13 +1543,25 @@ html[lang="en"] .content-section-note p {
     text-align: left;
 }
 
-.terms-contact {
+/* Contact and Social Wrapper */
+.contact-social-wrapper {
     margin-top: 0; /* Gap handled by content-sections-container margin-bottom */
-    margin-bottom: 0 !important; /* Remove any margin-bottom */
+    margin-bottom: 0 !important;
     padding: 20px 24px; /* Top/bottom: 20px, Left/right: 24px */
     background-color: rgba(115, 91, 242, 0.08); /* brandMain with 8% opacity */
     border-radius: 20px;
-    border-top: none; /* Remove border-top */
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* 16px gap between contact and social sections */
+}
+
+.terms-contact {
+    margin-top: 0;
+    margin-bottom: 0 !important;
+    padding: 0; /* Remove padding, handled by wrapper */
+    background-color: transparent; /* Remove background, handled by wrapper */
+    border-radius: 0; /* Remove border-radius, handled by wrapper */
+    border-top: none;
 }
 
 .terms-contact h2 {
@@ -1554,7 +1593,7 @@ html[lang="en"] .terms-contact h2 {
     letter-spacing: -0.007em; /* -0.7% */
     font-weight: 400; /* Regular */
     color: var(--cnt-neutral-tertiary); /* Different color from content-section-description */
-    margin: 0;
+    margin: 0 !important; /* Override .terms-section p margin-bottom */
     text-align: left; /* Default LTR */
 }
 
@@ -1580,6 +1619,80 @@ html[lang="en"] .terms-contact p {
 .terms-contact a:hover {
     opacity: 0.8;
     text-decoration: underline;
+}
+
+/* Social Media Section */
+.terms-social {
+    margin-top: 0; /* Gap handled by wrapper */
+    margin-bottom: 0 !important;
+    padding: 0; /* Remove padding, handled by wrapper */
+    background-color: transparent; /* Remove background, handled by wrapper */
+    border-radius: 0; /* Remove border-radius, handled by wrapper */
+    border-top: none;
+}
+
+.terms-social .social-title {
+    width: 100%;
+    font-size: 16px !important;
+    line-height: 140%;
+    letter-spacing: -0.02em; /* -2% */
+    font-weight: 600; /* Semi-bold */
+    color: var(--cnt-neutral-main);
+    margin-bottom: 0 !important;
+    margin-top: 0 !important; /* Override .page-content h2 margin-top */
+    text-align: left; /* Default LTR */
+}
+
+html[lang="fa"] .terms-social .social-title {
+    font-weight: 500; /* Medium for Persian */
+    text-align: right;
+}
+
+html[lang="en"] .terms-social .social-title {
+    font-weight: 600; /* Semi-bold for English */
+    text-align: left;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px; /* 8px gap between title and buttons */
+    align-items: center;
+}
+
+html[lang="fa"] .social-buttons {
+    flex-direction: row;
+}
+
+html[lang="en"] .social-buttons {
+    flex-direction: row;
+}
+
+.social-button {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-default-main);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.social-button img {
+    width: 20px;
+    height: 20px;
+    transition: all 0.2s ease;
+}
+
+/* Set SVG fill color using filter */
+.social-button img[src$=".svg"] {
+    filter: brightness(0) saturate(100%) invert(27%) sepia(8%) saturate(1000%) hue-rotate(180deg) brightness(95%) contrast(85%);
+}
+
+.social-button:hover img[src$=".svg"] {
+    filter: brightness(0) saturate(100%) invert(8%) sepia(4%) saturate(1000%) hue-rotate(180deg) brightness(95%) contrast(95%);
 }
 
 .page-title-icon {
