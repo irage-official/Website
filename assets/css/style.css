@@ -1330,6 +1330,11 @@ html[dir="ltr"] .terms-note {
     margin-bottom: 32px; /* 32px gap between sections and Questions and comments */
 }
 
+/* About page specific: 16px gap between sections */
+body.page-about .content-sections-container {
+    gap: 12px;
+}
+
 /* Content Section Component */
 content-section {
     display: block;
