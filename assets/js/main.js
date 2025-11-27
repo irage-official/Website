@@ -32,7 +32,6 @@ class SiteHeader extends HTMLElement {
 
         const navLinks = [
             this.createNavLink('donation', `${pagesPrefix}donation.html`, 'حمایت مالی', 'Donation'),
-            this.createNavLink('resources', `${pagesPrefix}resources.html`, 'منابع', 'Resources'),
             this.createNavLink('about', `${pagesPrefix}about.html`, 'درباره ما', 'About us'),
             this.createNavLink('policy', `${pagesPrefix}policy.html`, 'حریم خصوصی', 'Policy Privacy'),
             this.createNavLink('terms', `${pagesPrefix}terms.html`, 'شرایط استفاده', 'Terms & Conditions')
@@ -95,6 +94,206 @@ if (!customElements.get('site-header')) {
     customElements.define('site-header', SiteHeader);
 }
 
+// Content Section web component for page content
+class ContentSection extends HTMLElement {
+    connectedCallback() {
+        if (this._rendered) return;
+        
+        const titleFa = this.getAttribute('data-title-fa') || '';
+        const titleEn = this.getAttribute('data-title-en') || '';
+        const descriptionFa = this.getAttribute('data-description-fa') || '';
+        const descriptionEn = this.getAttribute('data-description-en') || '';
+        const noteFa = this.getAttribute('data-note-fa') || '';
+        const noteEn = this.getAttribute('data-note-en') || '';
+        
+        let titleHTML = '';
+        if (titleFa || titleEn) {
+            // Check if title contains "(coming soon)" or "(به زودی)"
+            const comingSoonFa = '(به زودی)';
+            const comingSoonEn = '(coming soon)';
+            
+            let titleFaProcessed = titleFa;
+            let titleEnProcessed = titleEn;
+            
+            // Extract main title and coming soon text for Persian
+            if (titleFa && titleFa.includes(comingSoonFa)) {
+                const parts = titleFa.split(comingSoonFa);
+                titleFaProcessed = parts[0].trim() + ' <span class="coming-soon">' + comingSoonFa + '</span>';
+            }
+            
+            // Extract main title and coming soon text for English
+            if (titleEn && titleEn.includes(comingSoonEn)) {
+                const parts = titleEn.split(comingSoonEn);
+                titleEnProcessed = parts[0].trim() + ' <span class="coming-soon">' + comingSoonEn + '</span>';
+            }
+            
+            titleHTML = `
+                <h2 class="content-section-title">
+                    ${titleFa ? `<span data-lang="fa">${titleFaProcessed}</span>` : ''}
+                    ${titleEn ? `<span data-lang="en" style="display: none;">${titleEnProcessed}</span>` : ''}
+                </h2>
+            `;
+        }
+        
+        let descriptionHTML = '';
+        if (descriptionFa || descriptionEn) {
+            // Process description to style "Irage"/"ایراژ" and "(Iranian Heritage)"/"(میراث ایران)"
+            let descriptionFaProcessed = descriptionFa;
+            let descriptionEnProcessed = descriptionEn;
+            
+            // Process Persian text
+            if (descriptionFa) {
+                // Make "ایراژ" or "ایرج" bold (handle both with and without quotes)
+                descriptionFaProcessed = descriptionFaProcessed.replace(
+                    /(«?)(ایراژ|ایرج)(»?)/g,
+                    (match, openQuote, word, closeQuote) => {
+                        return (openQuote || '') + '<strong>' + word + '</strong>' + (closeQuote || '');
+                    }
+                );
+                // Style "(میراث ایران)" with color
+                descriptionFaProcessed = descriptionFaProcessed.replace(
+                    /\(میراث ایران\)/g,
+                    '<span class="heritage-text">$&</span>'
+                );
+            }
+            
+            // Process English text
+            if (descriptionEn) {
+                // Make "Irage" bold (handle both with and without quotes)
+                descriptionEnProcessed = descriptionEnProcessed.replace(
+                    /("?)(Irage)("?)/g,
+                    (match, openQuote, word, closeQuote) => {
+                        return (openQuote || '') + '<strong>' + word + '</strong>' + (closeQuote || '');
+                    }
+                );
+                // Style "(Iranian Heritage)" with color
+                descriptionEnProcessed = descriptionEnProcessed.replace(
+                    /\(Iranian Heritage\)/g,
+                    '<span class="heritage-text">$&</span>'
+                );
+            }
+            
+            // Check if description contains HTML tags (like <ul>, <li>, etc.)
+            const hasHTML = descriptionFaProcessed.includes('<ul>') || descriptionEnProcessed.includes('<ul>') ||
+                           descriptionFaProcessed.includes('<br>') || descriptionEnProcessed.includes('<br>');
+            
+            if (hasHTML) {
+                // For HTML content, use div instead of p and wrap each language version
+                descriptionHTML = `
+                    <div class="content-section-description">
+                        ${descriptionFa ? `<div data-lang="fa">${descriptionFaProcessed}</div>` : ''}
+                        ${descriptionEn ? `<div data-lang="en" style="display: none;">${descriptionEnProcessed}</div>` : ''}
+                    </div>
+                `;
+            } else {
+                // For plain text, use p tag
+                descriptionHTML = `
+                    <p class="content-section-description">
+                        ${descriptionFa ? `<span data-lang="fa">${descriptionFaProcessed}</span>` : ''}
+                        ${descriptionEn ? `<span data-lang="en" style="display: none;">${descriptionEnProcessed}</span>` : ''}
+                    </p>
+                `;
+            }
+        }
+        
+        let noteHTML = '';
+        if (noteFa || noteEn) {
+            // Process note text to convert "Submit a Report" and "Add or Edit Record" to links
+            let noteFaProcessed = noteFa;
+            let noteEnProcessed = noteEn;
+            
+            // Replace "Submit a Report" with link in English
+            if (noteEn && noteEn.includes('Submit a Report')) {
+                noteEnProcessed = noteEn.replace(
+                    'Submit a Report',
+                    '<a href="mailto:feedback@irage.site" class="note-link">Submit a Report</a>'
+                );
+            }
+            
+            // Replace "ارسال گزارش" or similar Persian text with link
+            if (noteFa && noteFa.includes('ارسال گزارش')) {
+                noteFaProcessed = noteFa.replace(
+                    'ارسال گزارش',
+                    '<a href="mailto:feedback@irage.site" class="note-link">ارسال گزارش</a>'
+                );
+            }
+            
+            // Replace "Add or Edit Record" with link in English
+            if (noteEn && noteEn.includes('Add or Edit Record')) {
+                noteEnProcessed = noteEn.replace(
+                    'Add or Edit Record',
+                    '<a href="mailto:feedback@irage.site" class="note-link">Add or Edit Record</a>'
+                );
+            }
+            
+            // Replace "افزودن یا ویرایش رکورد" or similar Persian text with link
+            if (noteFa && noteFa.includes('افزودن یا ویرایش رکورد')) {
+                noteFaProcessed = noteFa.replace(
+                    'افزودن یا ویرایش رکورد',
+                    '<a href="mailto:feedback@irage.site" class="note-link">افزودن یا ویرایش رکورد</a>'
+                );
+            }
+            
+            noteHTML = `
+                <div class="content-section-note">
+                    <p>
+                        ${noteFa ? `<span data-lang="fa">${noteFaProcessed}</span>` : ''}
+                        ${noteEn ? `<span data-lang="en" style="display: none;">${noteEnProcessed}</span>` : ''}
+                    </p>
+                </div>
+            `;
+        }
+        
+        this.innerHTML = `
+            <section class="content-section">
+                ${titleHTML}
+                <div class="content-section-context">
+                    ${descriptionHTML}
+                    ${noteHTML}
+                </div>
+            </section>
+        `;
+        
+        this._rendered = true;
+        
+        // Apply current language after rendering
+        // Use setTimeout to ensure DOM is ready
+        setTimeout(() => {
+            const html = document.getElementById('html-root');
+            if (html) {
+                const currentLang = html.getAttribute('lang') || 'fa';
+                this.applyLanguageToContent(currentLang);
+            } else {
+                // If html-root not found yet, try again after a short delay
+                setTimeout(() => {
+                    const html = document.getElementById('html-root');
+                    if (html) {
+                        const currentLang = html.getAttribute('lang') || 'fa';
+                        this.applyLanguageToContent(currentLang);
+                    }
+                }, 100);
+            }
+        }, 0);
+    }
+    
+    applyLanguageToContent(lang) {
+        const faElements = this.querySelectorAll('[data-lang="fa"]');
+        const enElements = this.querySelectorAll('[data-lang="en"]');
+        
+        faElements.forEach(el => {
+            el.style.display = lang === 'fa' ? '' : 'none';
+        });
+        
+        enElements.forEach(el => {
+            el.style.display = lang === 'en' ? '' : 'none';
+        });
+    }
+}
+
+if (!customElements.get('content-section')) {
+    customElements.define('content-section', ContentSection);
+}
+
 // Function to detect user location and set default language
 async function detectUserLocation() {
     try {
@@ -136,6 +335,14 @@ function applyLanguage(lang) {
     
     enElements.forEach(el => {
         el.style.display = lang === 'en' ? '' : 'none';
+    });
+    
+    // Update content-section components
+    const contentSections = document.querySelectorAll('content-section');
+    contentSections.forEach(section => {
+        if (section.applyLanguageToContent) {
+            section.applyLanguageToContent(lang);
+        }
     });
     
     // Update logo images
