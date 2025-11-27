@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,184 +8,200 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css?v=2.0">
+    <link rel="stylesheet" href="../assets/css/style.css" id="main-css">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link rel="icon" type="image/png" href="../assets/images/logo_centered.png">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <a href="../index.html" class="logo">
-                    <img src="../assets/images/logo_centered.png" alt="ایراژ">
-                    <span>ایراژ</span>
-                </a>
-                <button class="mobile-menu-toggle" aria-label="منو">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="../index.html">خانه</a></li>
-                    <li><a href="about.html">درباره ما</a></li>
-                    <li><a href="resources.html">منابع</a></li>
-                    <li><a href="terms.html" class="active">شرایط استفاده</a></li>
-                    <li><a href="policy.html">پالیسی</a></li>
-                    <li><a href="donation.html" class="btn-donation">حمایت</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Header -->
+    <site-header data-active="terms"></site-header>
 
     <!-- Page Content -->
-    <div class="page-content">
-        <h1>شرایط استفاده</h1>
-        
-        <p>
-            با استفاده از اپلیکیشن و وب‌سایت ایراژ، شما موافقت می‌کنید که این شرایط استفاده را رعایت کنید. 
-            لطفاً قبل از استفاده، این شرایط را به دقت مطالعه کنید.
-        </p>
+    <div class="body-content">
+        <div class="page-content">
+            <h1>
+                <span data-lang="fa">شرایط استفاده</span>
+                <span data-lang="en" style="display: none;">Terms & Conditions</span>
+            </h1>
+            
+            <p>
+                <span data-lang="fa">با استفاده از اپلیکیشن و وب‌سایت ایراژ، شما موافقت می‌کنید که این شرایط استفاده را رعایت کنید. لطفاً قبل از استفاده، این شرایط را به دقت مطالعه کنید.</span>
+                <span data-lang="en" style="display: none;">By using the Irage application and website, you agree to comply with these terms of use. Please read these terms carefully before using.</span>
+            </p>
 
-        <h2>پذیرش شرایط</h2>
-        <p>
-            با دسترسی و استفاده از ایراژ، شما تأیید می‌کنید که این شرایط استفاده را خوانده، درک کرده و با آن موافقت دارید. 
-            اگر با هر بخشی از این شرایط موافق نیستید، لطفاً از استفاده از خدمات ما خودداری کنید.
-        </p>
+            <h2>
+                <span data-lang="fa">پذیرش شرایط</span>
+                <span data-lang="en" style="display: none;">Acceptance of Terms</span>
+            </h2>
+            <p>
+                <span data-lang="fa">با دسترسی و استفاده از ایراژ، شما تأیید می‌کنید که این شرایط استفاده را خوانده، درک کرده و با آن موافقت دارید. اگر با هر بخشی از این شرایط موافق نیستید، لطفاً از استفاده از خدمات ما خودداری کنید.</span>
+                <span data-lang="en" style="display: none;">By accessing and using Irage, you acknowledge that you have read, understood, and agree to these terms of use. If you do not agree with any part of these terms, please refrain from using our services.</span>
+            </p>
 
-        <h2>استفاده از خدمات</h2>
-        <h3>مجوز استفاده</h3>
-        <p>
-            به شما مجوز محدود، غیرانحصاری، غیرقابل انتقال و قابل لغو برای دسترسی و استفاده از ایراژ برای اهداف شخصی و غیرتجاری داده می‌شود.
-        </p>
+            <h2>
+                <span data-lang="fa">استفاده از خدمات</span>
+                <span data-lang="en" style="display: none;">Use of Services</span>
+            </h2>
+            <h3>
+                <span data-lang="fa">مجوز استفاده</span>
+                <span data-lang="en" style="display: none;">License to Use</span>
+            </h3>
+            <p>
+                <span data-lang="fa">به شما مجوز محدود، غیرانحصاری، غیرقابل انتقال و قابل لغو برای دسترسی و استفاده از ایراژ برای اهداف شخصی و غیرتجاری داده می‌شود.</span>
+                <span data-lang="en" style="display: none;">You are granted a limited, non-exclusive, non-transferable, and revocable license to access and use Irage for personal and non-commercial purposes.</span>
+            </p>
 
-        <h3>محدودیت‌های استفاده</h3>
-        <p>شما موافقت می‌کنید که:</p>
-        <ul>
-            <li>از خدمات ما به روشی که قوانین قابل اجرا را نقض نکند استفاده کنید</li>
-            <li>از خدمات ما برای هر هدف غیرقانونی یا غیرمجاز استفاده نکنید</li>
-            <li>سعی در دسترسی غیرمجاز به سیستم‌ها یا شبکه‌های ما نداشته باشید</li>
-            <li>از خدمات ما برای ارسال هرزنامه یا محتوای مخرب استفاده نکنید</li>
-            <li>حقوق مالکیت فکری ما یا دیگران را نقض نکنید</li>
-        </ul>
+            <h3>
+                <span data-lang="fa">محدودیت‌های استفاده</span>
+                <span data-lang="en" style="display: none;">Usage Restrictions</span>
+            </h3>
+            <p>
+                <span data-lang="fa">شما موافقت می‌کنید که:</span>
+                <span data-lang="en" style="display: none;">You agree that:</span>
+            </p>
+            <ul>
+                <li>
+                    <span data-lang="fa">از خدمات ما به روشی که قوانین قابل اجرا را نقض نکند استفاده کنید</span>
+                    <span data-lang="en" style="display: none;">Use our services in a manner that does not violate applicable laws</span>
+                </li>
+                <li>
+                    <span data-lang="fa">از خدمات ما برای هر هدف غیرقانونی یا غیرمجاز استفاده نکنید</span>
+                    <span data-lang="en" style="display: none;">Do not use our services for any illegal or unauthorized purpose</span>
+                </li>
+                <li>
+                    <span data-lang="fa">سعی در دسترسی غیرمجاز به سیستم‌ها یا شبکه‌های ما نداشته باشید</span>
+                    <span data-lang="en" style="display: none;">Do not attempt to gain unauthorized access to our systems or networks</span>
+                </li>
+                <li>
+                    <span data-lang="fa">از خدمات ما برای ارسال هرزنامه یا محتوای مخرب استفاده نکنید</span>
+                    <span data-lang="en" style="display: none;">Do not use our services to send spam or malicious content</span>
+                </li>
+                <li>
+                    <span data-lang="fa">حقوق مالکیت فکری ما یا دیگران را نقض نکنید</span>
+                    <span data-lang="en" style="display: none;">Do not infringe on the intellectual property rights of us or others</span>
+                </li>
+            </ul>
 
-        <h2>محتوای کاربر</h2>
-        <p>
-            اگر محتوایی را به ایراژ ارسال می‌کنید، شما حق و مجوز لازم برای انجام این کار را دارید و محتوای شما:
-        </p>
-        <ul>
-            <li>قانونی، صادقانه و دقیق است</li>
-            <li>حقوق هیچ شخص ثالثی را نقض نمی‌کند</li>
-            <li>مخرب، توهین‌آمیز یا نامناسب نیست</li>
-        </ul>
+            <h2>
+                <span data-lang="fa">محتوای کاربر</span>
+                <span data-lang="en" style="display: none;">User Content</span>
+            </h2>
+            <p>
+                <span data-lang="fa">اگر محتوایی را به ایراژ ارسال می‌کنید، شما حق و مجوز لازم برای انجام این کار را دارید و محتوای شما:</span>
+                <span data-lang="en" style="display: none;">If you submit content to Irage, you have the right and authorization to do so, and your content:</span>
+            </p>
+            <ul>
+                <li>
+                    <span data-lang="fa">قانونی، صادقانه و دقیق است</span>
+                    <span data-lang="en" style="display: none;">Is legal, honest, and accurate</span>
+                </li>
+                <li>
+                    <span data-lang="fa">حقوق هیچ شخص ثالثی را نقض نمی‌کند</span>
+                    <span data-lang="en" style="display: none;">Does not infringe on the rights of any third party</span>
+                </li>
+                <li>
+                    <span data-lang="fa">مخرب، توهین‌آمیز یا نامناسب نیست</span>
+                    <span data-lang="en" style="display: none;">Is not malicious, offensive, or inappropriate</span>
+                </li>
+            </ul>
 
-        <h2>مالکیت فکری</h2>
-        <p>
-            تمام محتوا، ویژگی‌ها و عملکرد موجود در ایراژ، از جمله اما نه محدود به متن، گرافیک، لوگو، آیکون‌ها، تصاویر، 
-            کلیپ‌های صوتی، دانلودهای دیجیتال و کامپایل‌های داده، متعلق به تیم توسعه ایراژ یا تأمین‌کنندگان محتوای آن است 
-            و توسط قوانین کپی‌رایت و سایر قوانین مالکیت فکری محافظت می‌شود.
-        </p>
+            <h2>
+                <span data-lang="fa">مالکیت فکری</span>
+                <span data-lang="en" style="display: none;">Intellectual Property</span>
+            </h2>
+            <p>
+                <span data-lang="fa">تمام محتوا، ویژگی‌ها و عملکرد موجود در ایراژ، از جمله اما نه محدود به متن، گرافیک، لوگو، آیکون‌ها، تصاویر، کلیپ‌های صوتی، دانلودهای دیجیتال و کامپایل‌های داده، متعلق به تیم توسعه ایراژ یا تأمین‌کنندگان محتوای آن است و توسط قوانین کپی‌رایت و سایر قوانین مالکیت فکری محافظت می‌شود.</span>
+                <span data-lang="en" style="display: none;">All content, features, and functionality available in Irage, including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, and data compilations, belong to the Irage development team or its content suppliers and are protected by copyright and other intellectual property laws.</span>
+            </p>
 
-        <h2>عدم تضمین</h2>
-        <p>
-            خدمات ما "همانطور که هست" و "همانطور که در دسترس است" ارائه می‌شود. ما هیچ تضمینی، صریح یا ضمنی، 
-            در مورد دقت، کامل بودن، قابلیت اطمینان یا مناسب بودن خدمات برای هر هدف خاص ارائه نمی‌دهیم.
-        </p>
+            <h2>
+                <span data-lang="fa">عدم تضمین</span>
+                <span data-lang="en" style="display: none;">Disclaimer</span>
+            </h2>
+            <p>
+                <span data-lang="fa">خدمات ما "همانطور که هست" و "همانطور که در دسترس است" ارائه می‌شود. ما هیچ تضمینی، صریح یا ضمنی، در مورد دقت، کامل بودن، قابلیت اطمینان یا مناسب بودن خدمات برای هر هدف خاص ارائه نمی‌دهیم.</span>
+                <span data-lang="en" style="display: none;">Our services are provided "as is" and "as available". We make no warranties, express or implied, regarding the accuracy, completeness, reliability, or suitability of the services for any particular purpose.</span>
+            </p>
 
-        <h2>محدودیت مسئولیت</h2>
-        <p>
-            تا حد مجاز قانونی، تیم توسعه ایراژ مسئولیتی در قبال هرگونه خسارت مستقیم، غیرمستقیم، اتفاقی، خاص، 
-            تبعی یا نمونه‌ای ناشی از یا مرتبط با استفاده یا عدم امکان استفاده از خدمات ما ندارد.
-        </p>
+            <h2>
+                <span data-lang="fa">محدودیت مسئولیت</span>
+                <span data-lang="en" style="display: none;">Limitation of Liability</span>
+            </h2>
+            <p>
+                <span data-lang="fa">تا حد مجاز قانونی، تیم توسعه ایراژ مسئولیتی در قبال هرگونه خسارت مستقیم، غیرمستقیم، اتفاقی، خاص، تبعی یا نمونه‌ای ناشی از یا مرتبط با استفاده یا عدم امکان استفاده از خدمات ما ندارد.</span>
+                <span data-lang="en" style="display: none;">To the extent permitted by law, the Irage development team is not liable for any direct, indirect, incidental, special, consequential, or exemplary damages arising from or related to the use or inability to use our services.</span>
+            </p>
 
-        <h2>تغییرات در شرایط</h2>
-        <p>
-            ما حق داریم این شرایط استفاده را در هر زمان تغییر دهیم. تغییرات از زمان انتشار در این صفحه مؤثر خواهند بود. 
-            ادامه استفاده از خدمات ما پس از تغییرات به معنای پذیرش شرایط جدید است.
-        </p>
+            <h2>
+                <span data-lang="fa">تغییرات در شرایط</span>
+                <span data-lang="en" style="display: none;">Changes to Terms</span>
+            </h2>
+            <p>
+                <span data-lang="fa">ما حق داریم این شرایط استفاده را در هر زمان تغییر دهیم. تغییرات از زمان انتشار در این صفحه مؤثر خواهند بود. ادامه استفاده از خدمات ما پس از تغییرات به معنای پذیرش شرایط جدید است.</span>
+                <span data-lang="en" style="display: none;">We reserve the right to change these terms of use at any time. Changes will be effective upon publication on this page. Continued use of our services after changes constitutes acceptance of the new terms.</span>
+            </p>
 
-        <h2>فسخ</h2>
-        <p>
-            ما حق داریم، به صلاحدید خود و بدون اطلاع قبلی یا مسئولیت، دسترسی شما به خدمات را به هر دلیلی، 
-            از جمله در صورت نقض این شرایط استفاده، فسخ یا تعلیق کنیم.
-        </p>
+            <h2>
+                <span data-lang="fa">فسخ</span>
+                <span data-lang="en" style="display: none;">Termination</span>
+            </h2>
+            <p>
+                <span data-lang="fa">ما حق داریم، به صلاحدید خود و بدون اطلاع قبلی یا مسئولیت، دسترسی شما به خدمات را به هر دلیلی، از جمله در صورت نقض این شرایط استفاده، فسخ یا تعلیق کنیم.</span>
+                <span data-lang="en" style="display: none;">We reserve the right, at our discretion and without prior notice or liability, to terminate or suspend your access to the services for any reason, including violation of these terms of use.</span>
+            </p>
 
-        <h2>قانون حاکم</h2>
-        <p>
-            این شرایط استفاده توسط قوانین بین‌المللی و اصول عدالت و انصاف تفسیر و اجرا می‌شود.
-        </p>
+            <h2>
+                <span data-lang="fa">قانون حاکم</span>
+                <span data-lang="en" style="display: none;">Governing Law</span>
+            </h2>
+            <p>
+                <span data-lang="fa">این شرایط استفاده توسط قوانین بین‌المللی و اصول عدالت و انصاف تفسیر و اجرا می‌شود.</span>
+                <span data-lang="en" style="display: none;">These terms of use are interpreted and enforced in accordance with international laws and principles of justice and fairness.</span>
+            </p>
 
-        <h2>تماس</h2>
-        <p>
-            اگر سؤالی در مورد این شرایط استفاده دارید، لطفاً با ما تماس بگیرید:
-        </p>
-        <p>
-            ایمیل: <a href="mailto:info@irage.site">info@irage.site</a>
-        </p>
+            <h2>
+                <span data-lang="fa">تماس</span>
+                <span data-lang="en" style="display: none;">Contact</span>
+            </h2>
+            <p>
+                <span data-lang="fa">اگر سؤالی در مورد این شرایط استفاده دارید، لطفاً با ما تماس بگیرید:</span>
+                <span data-lang="en" style="display: none;">If you have any questions about these terms of use, please contact us:</span>
+            </p>
+            <p>
+                <span data-lang="fa">ایمیل:</span>
+                <span data-lang="en" style="display: none;">Email:</span>
+                <a href="mailto:info@irage.site">info@irage.site</a>
+            </p>
 
-        <p style="margin-top: 2rem; color: var(--gray-600); font-size: 0.9rem;">
-            آخرین به‌روزرسانی: ۲۰۲۵
-        </p>
+            <p style="margin-top: 2rem; color: var(--cnt-neutral-tertiary); font-size: 0.9rem;">
+                <span data-lang="fa">آخرین به‌روزرسانی: ۲۰۲۵</span>
+                <span data-lang="en" style="display: none;">Last updated: 2025</span>
+            </p>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>ایراژ</h3>
-                    <p>تقویم مستقل ایرانی</p>
-                </div>
-                <div class="footer-section">
-                    <h4>لینک‌های مفید</h4>
-                    <ul>
-                        <li><a href="about.html">درباره ما</a></li>
-                        <li><a href="resources.html">منابع</a></li>
-                        <li><a href="terms.html">شرایط استفاده</a></li>
-                        <li><a href="policy.html">پالیسی</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>تماس</h4>
-                    <ul>
-                        <li><a href="mailto:info@irage.site">info@irage.site</a></li>
-                        <li><a href="mailto:feedback@irage.site">feedback@irage.site</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; ۲۰۲۵ ایراژ. تمامی حقوق محفوظ است.</p>
-                <p>توسعه‌دهنده: تیم توسعه ایراژ</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Donation Modal -->
-    <div id="donationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeDonationModal()">×</span>
-            <h2>حمایت از پروژه ایراژ</h2>
-            <p>با حمایت شما، می‌توانیم این پروژه را ادامه دهیم و بهبود بخشیم.</p>
-            <div class="donation-options">
-                <div class="donation-option">
-                    <h3>کریپتو</h3>
-                    <p>آدرس کیف پول:</p>
-                    <div class="wallet-address">
-                        <code id="walletAddress">0x...</code>
-                        <button class="btn-copy" onclick="copyWalletAddress()">کپی</button>
-                    </div>
-                </div>
-                <div class="donation-option">
-                    <h3>سایر روش‌ها</h3>
-                    <p>برای اطلاعات بیشتر با ما تماس بگیرید: <a href="mailto:info@irage.site">info@irage.site</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="../assets/js/main.js?v=2.0"></script>
+    <script>
+        // Force reload CSS to bypass cache
+        (function() {
+            const timestamp = Date.now();
+            const cssLink = document.getElementById('main-css');
+            if (cssLink) {
+                cssLink.href = '../assets/css/style.css?v=' + timestamp;
+            }
+        })();
+    </script>
+    <script src="../assets/js/main.js" id="main-js"></script>
+    <script>
+        // Force reload JS to bypass cache
+        (function() {
+            const timestamp = Date.now();
+            const jsScript = document.getElementById('main-js');
+            if (jsScript) {
+                jsScript.src = '../assets/js/main.js?v=' + timestamp;
+            }
+        })();
+    </script>
 </body>
 </html>
-

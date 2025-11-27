@@ -11,6 +11,90 @@ function toggleLanguage() {
     localStorage.setItem('preferredLanguage', newLang);
 }
 
+// Header web component used across all pages
+class SiteHeader extends HTMLElement {
+    static get observedAttributes() {
+        return ['data-active'];
+    }
+
+    connectedCallback() {
+        // Prevent double render if element is re-attached
+        if (this._rendered) {
+            this.updateActiveLink(this.getAttribute('data-active'));
+            return;
+        }
+
+        const isNestedPage = window.location.pathname.includes('/pages/');
+        const assetPrefix = isNestedPage ? '../' : '';
+        const pagesPrefix = isNestedPage ? '' : 'pages/';
+        const homeHref = isNestedPage ? '../index.html' : 'index.html';
+        const activeLink = this.getAttribute('data-active') || '';
+
+        const navLinks = [
+            this.createNavLink('donation', `${pagesPrefix}donation.html`, 'حمایت مالی', 'Donation'),
+            this.createNavLink('resources', `${pagesPrefix}resources.html`, 'منابع', 'Resources'),
+            this.createNavLink('about', `${pagesPrefix}about.html`, 'درباره ما', 'About us'),
+            this.createNavLink('policy', `${pagesPrefix}policy.html`, 'حریم خصوصی', 'Policy Privacy'),
+            this.createNavLink('terms', `${pagesPrefix}terms.html`, 'شرایط استفاده', 'Terms & Conditions')
+        ].join('');
+
+        this.innerHTML = `
+            <header class="header">
+                <div class="container">
+                    <div class="header-content">
+                        <a href="${homeHref}" class="logo">
+                            <img src="${assetPrefix}assets/images/logo-en.svg" alt="Irage" data-lang="en" style="display: none;">
+                            <img src="${assetPrefix}assets/images/logo-fa.svg" alt="ایراژ" data-lang="fa">
+                        </a>
+                        <nav class="header-nav">
+                            ${navLinks}
+                        </nav>
+                        <div class="header-actions">
+                            <button class="btn-lang" onclick="toggleLanguage()">
+                                <span data-lang="fa">EN</span>
+                                <span data-lang="en" style="display: none;">فا</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        `;
+
+        this._rendered = true;
+        this.updateActiveLink(activeLink);
+    }
+
+    attributeChangedCallback(name, _oldValue, newValue) {
+        if (name === 'data-active' && this._rendered) {
+            this.updateActiveLink(newValue);
+        }
+    }
+
+    createNavLink(id, href, faLabel, enLabel) {
+        return `
+            <a href="${href}" class="nav-link nav-${id}" data-link="${id}">
+                <span data-lang="fa">${faLabel}</span>
+                <span data-lang="en" style="display: none;">${enLabel}</span>
+            </a>
+        `;
+    }
+
+    updateActiveLink(activeId) {
+        const navLinks = this.querySelectorAll('.nav-link');
+        if (!navLinks.length || !activeId) {
+            return;
+        }
+
+        navLinks.forEach(link => {
+            link.classList.toggle('active', link.dataset.link === activeId);
+        });
+    }
+}
+
+if (!customElements.get('site-header')) {
+    customElements.define('site-header', SiteHeader);
+}
+
 // Function to detect user location and set default language
 async function detectUserLocation() {
     try {
@@ -180,20 +264,40 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add active class to current page in navigation
-document.addEventListener('DOMContentLoaded', function() {
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    
-    navLinks.forEach(link => {
-        const linkPath = new URL(link.href).pathname;
-        if (linkPath === currentPath || 
-            (currentPath.endsWith('/') && linkPath === currentPath.slice(0, -1)) ||
-            (currentPath === '/index.html' && linkPath.endsWith('index.html'))) {
-            link.classList.add('active');
-        }
-    });
-});
+const DONATION_ADDRESS = 'TNdXt3TSZnhuyGraxFhdSrUsNPtyXS4MZp';
+const DONATION_QR_URL = 'https://api.qrserver.com/v1/create-qr-code/?size=640x640&data=' + DONATION_ADDRESS;
+
+function copyDonationAddress() {
+    if (!navigator.clipboard) {
+        alert('Clipboard API not available.');
+        return;
+    }
+    navigator.clipboard.writeText(DONATION_ADDRESS)
+        .then(() => console.log('Donation address copied'))
+        .catch(err => console.error('Failed to copy donation address', err));
+}
+
+function downloadDonationQR() {
+    const link = document.createElement('a');
+    link.href = DONATION_QR_URL;
+    link.download = 'irage-usdt-qr.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function shareDonationAddress() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Irage Donation Address',
+            text: DONATION_ADDRESS,
+            url: window.location.origin + '/pages/donation.html'
+        }).catch(() => {});
+    } else {
+        copyDonationAddress();
+        alert('آدرس کپی شد. می‌توانید آن را در پیام خود قرار دهید.');
+    }
+}
 
 // Element Inspector: Option+Click to inspect elements
 document.addEventListener('click', function(e) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,40 +8,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css?v=2.0">
+    <link rel="stylesheet" href="../assets/css/style.css" id="main-css">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link rel="icon" type="image/png" href="../assets/images/logo_centered.png">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <a href="../index.html" class="logo">
-                    <img src="../assets/images/logo_centered.png" alt="ایراژ">
-                    <span>ایراژ</span>
-                </a>
-                <button class="mobile-menu-toggle" aria-label="منو">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="../index.html">خانه</a></li>
-                    <li><a href="about.html">درباره ما</a></li>
-                    <li><a href="resources.html" class="active">منابع</a></li>
-                    <li><a href="terms.html">شرایط استفاده</a></li>
-                    <li><a href="policy.html">پالیسی</a></li>
-                    <li><a href="donation.html" class="btn-donation">حمایت</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Header -->
+    <site-header data-active="resources"></site-header>
 
     <!-- Page Content -->
-    <div class="page-content">
+    <div class="body-content">
+        <div class="page-content">
         <h1>منابع و مراجع</h1>
         
         <p>
@@ -164,67 +143,33 @@
             لطفاً فایل LICENSE را در مخزن GitHub بررسی کنید.
         </p>
 
-        <p style="margin-top: 2rem; color: var(--gray-600); font-size: 0.9rem;">
-            آخرین به‌روزرسانی: ۲۰۲۵
-        </p>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>ایراژ</h3>
-                    <p>تقویم مستقل ایرانی</p>
-                </div>
-                <div class="footer-section">
-                    <h4>لینک‌های مفید</h4>
-                    <ul>
-                        <li><a href="about.html">درباره ما</a></li>
-                        <li><a href="resources.html">منابع</a></li>
-                        <li><a href="terms.html">شرایط استفاده</a></li>
-                        <li><a href="policy.html">پالیسی</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>تماس</h4>
-                    <ul>
-                        <li><a href="mailto:info@irage.site">info@irage.site</a></li>
-                        <li><a href="mailto:feedback@irage.site">feedback@irage.site</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; ۲۰۲۵ ایراژ. تمامی حقوق محفوظ است.</p>
-                <p>توسعه‌دهنده: تیم توسعه ایراژ</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Donation Modal -->
-    <div id="donationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeDonationModal()">×</span>
-            <h2>حمایت از پروژه ایراژ</h2>
-            <p>با حمایت شما، می‌توانیم این پروژه را ادامه دهیم و بهبود بخشیم.</p>
-            <div class="donation-options">
-                <div class="donation-option">
-                    <h3>کریپتو</h3>
-                    <p>آدرس کیف پول:</p>
-                    <div class="wallet-address">
-                        <code id="walletAddress">0x...</code>
-                        <button class="btn-copy" onclick="copyWalletAddress()">کپی</button>
-                    </div>
-                </div>
-                <div class="donation-option">
-                    <h3>سایر روش‌ها</h3>
-                    <p>برای اطلاعات بیشتر با ما تماس بگیرید: <a href="mailto:info@irage.site">info@irage.site</a></p>
-                </div>
-            </div>
+            <p style="margin-top: 2rem; color: var(--cnt-neutral-tertiary); font-size: 0.9rem;">
+                آخرین به‌روزرسانی: ۲۰۲۵
+            </p>
         </div>
     </div>
 
-    <script src="../assets/js/main.js?v=2.0"></script>
+    <script>
+        // Force reload CSS to bypass cache
+        (function() {
+            const timestamp = Date.now();
+            const cssLink = document.getElementById('main-css');
+            if (cssLink) {
+                cssLink.href = '../assets/css/style.css?v=' + timestamp;
+            }
+        })();
+    </script>
+    <script src="../assets/js/main.js" id="main-js"></script>
+    <script>
+        // Force reload JS to bypass cache
+        (function() {
+            const timestamp = Date.now();
+            const jsScript = document.getElementById('main-js');
+            if (jsScript) {
+                jsScript.src = '../assets/js/main.js?v=' + timestamp;
+            }
+        })();
+    </script>
 </body>
 </html>
 
