@@ -269,6 +269,9 @@ class ContentSection extends HTMLElement {
             `;
         }
         
+        // Preserve any existing child elements (like donation-wallet-section)
+        const existingChildren = Array.from(this.children);
+        
         this.innerHTML = `
             <section class="content-section">
                 ${titleHTML}
@@ -278,6 +281,16 @@ class ContentSection extends HTMLElement {
                 </div>
             </section>
         `;
+        
+        // Re-append preserved children to the content-section-context
+        if (existingChildren.length > 0) {
+            const contextDiv = this.querySelector('.content-section-context');
+            if (contextDiv) {
+                existingChildren.forEach(child => {
+                    contextDiv.appendChild(child);
+                });
+            }
+        }
         
         this._rendered = true;
         
@@ -512,13 +525,28 @@ const DONATION_ADDRESS = 'TNdXt3TSZnhuyGraxFhdSrUsNPtyXS4MZp';
 const DONATION_QR_URL = 'https://api.qrserver.com/v1/create-qr-code/?size=640x640&data=' + DONATION_ADDRESS;
 
 function copyDonationAddress() {
+    const tooltip = document.getElementById('copyTooltip');
+    
     if (!navigator.clipboard) {
         alert('Clipboard API not available.');
         return;
     }
+    
     navigator.clipboard.writeText(DONATION_ADDRESS)
-        .then(() => console.log('Donation address copied'))
-        .catch(err => console.error('Failed to copy donation address', err));
+        .then(() => {
+            console.log('Donation address copied');
+            // Show tooltip
+            if (tooltip) {
+                tooltip.classList.add('show');
+                setTimeout(() => {
+                    tooltip.classList.remove('show');
+                }, 2000);
+            }
+        })
+        .catch(err => {
+            console.error('Failed to copy donation address', err);
+            alert('Failed to copy address');
+        });
 }
 
 function downloadDonationQR() {
