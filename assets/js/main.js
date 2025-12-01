@@ -42,8 +42,8 @@ class SiteHeader extends HTMLElement {
                 <div class="container">
                     <div class="header-content">
                         <a href="${homeHref}" class="logo">
-                            <img src="${assetPrefix}assets/images/logo-en.svg" alt="Irage" data-lang="en" style="display: none;">
-                            <img src="${assetPrefix}assets/images/logo-fa.svg" alt="ایراژ" data-lang="fa">
+                            <img src="${assetPrefix}assets/images/logo-en.svg" alt="Irage" data-lang="en" style="display: none;" fetchpriority="high">
+                            <img src="${assetPrefix}assets/images/logo-fa.svg" alt="ایراژ" data-lang="fa" fetchpriority="high">
                         </a>
                         <nav class="header-nav">
                             ${navLinks}
@@ -346,7 +346,6 @@ async function detectUserLocation() {
             return 'en'; // English for other countries
         }
     } catch (error) {
-        console.log('Location detection failed, using fallback:', error);
         // Fallback: try to detect from browser language
         const browserLang = navigator.language || navigator.userLanguage;
         if (browserLang.startsWith('fa') || browserLang.startsWith('ar')) {
@@ -443,66 +442,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 });
 
-// Donation Modal Functions
-function openDonationModal() {
-    const modal = document.getElementById('donationModal');
-    if (modal) {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    }
-}
-
-function closeDonationModal() {
-    const modal = document.getElementById('donationModal');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Restore scrolling
-    }
-}
-
-// Close modal when clicking outside
-window.onclick = function(event) {
-    const modal = document.getElementById('donationModal');
-    if (event.target === modal) {
-        closeDonationModal();
-    }
-}
-
-// Copy Wallet Address Function
-function copyWalletAddress() {
-    const walletAddress = document.getElementById('walletAddress');
-    if (walletAddress) {
-        const text = walletAddress.textContent;
-        
-        // Create a temporary textarea to copy text
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        document.body.appendChild(textarea);
-        textarea.select();
-        
-        try {
-            document.execCommand('copy');
-            
-            // Show feedback
-            const btn = event.target;
-            const originalText = btn.textContent;
-            btn.textContent = 'کپی شد!';
-            btn.style.backgroundColor = '#00B383';
-            
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.backgroundColor = '';
-            }, 2000);
-        } catch (err) {
-            console.error('Failed to copy text:', err);
-            alert('خطا در کپی کردن آدرس. لطفاً به صورت دستی کپی کنید.');
-        }
-        
-        document.body.removeChild(textarea);
-    }
-}
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -522,7 +461,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 const DONATION_ADDRESS = 'TNdXt3TSZnhuyGraxFhdSrUsNPtyXS4MZp';
-const DONATION_QR_URL = 'https://api.qrserver.com/v1/create-qr-code/?size=640x640&data=' + DONATION_ADDRESS;
 
 function copyDonationAddress() {
     const tooltip = document.getElementById('copyTooltip');
@@ -534,7 +472,6 @@ function copyDonationAddress() {
     
     navigator.clipboard.writeText(DONATION_ADDRESS)
         .then(() => {
-            console.log('Donation address copied');
             // Show tooltip
             if (tooltip) {
                 tooltip.classList.add('show');
@@ -543,86 +480,10 @@ function copyDonationAddress() {
                 }, 2000);
             }
         })
-        .catch(err => {
-            console.error('Failed to copy donation address', err);
+        .catch(() => {
             alert('Failed to copy address');
         });
 }
 
-function downloadDonationQR() {
-    const link = document.createElement('a');
-    link.href = DONATION_QR_URL;
-    link.download = 'irage-usdt-qr.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
 
-function shareDonationAddress() {
-    if (navigator.share) {
-        navigator.share({
-            title: 'Irage Donation Address',
-            text: DONATION_ADDRESS,
-            url: window.location.origin + '/pages/donation.html'
-        }).catch(() => {});
-    } else {
-        copyDonationAddress();
-        alert('آدرس کپی شد. می‌توانید آن را در پیام خود قرار دهید.');
-    }
-}
-
-// Element Inspector: Option+Click to inspect elements
-document.addEventListener('click', function(e) {
-    if (e.altKey || e.metaKey) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const el = e.target;
-        
-        // Get element info
-        const tagName = el.tagName.toLowerCase();
-        const className = el.className ? (typeof el.className === 'string' ? el.className : Array.from(el.className).join(' ')) : '';
-        const id = el.id || '';
-        
-        // Build selector
-        let selector = tagName;
-        if (id) selector += '#' + id;
-        if (className) {
-            const classes = className.split(' ').filter(c => c.trim());
-            if (classes.length > 0) {
-                selector += '.' + classes.join('.');
-            }
-        }
-        
-        // Highlight element
-        const originalOutline = el.style.outline;
-        const originalBackground = el.style.backgroundColor;
-        el.style.outline = '3px solid #735BF2';
-        el.style.backgroundColor = 'rgba(115, 91, 242, 0.1)';
-        
-        // Log to console
-        console.group('🔍 Element Inspector');
-        console.log('Element:', el);
-        console.log('Tag:', tagName);
-        console.log('ID:', id || '(none)');
-        console.log('Classes:', className || '(none)');
-        console.log('Selector:', selector);
-        console.log('HTML:', el.outerHTML.substring(0, 200) + (el.outerHTML.length > 200 ? '...' : ''));
-        console.log('Computed Styles:', window.getComputedStyle(el));
-        console.groupEnd();
-        
-        // Remove highlight after 2 seconds
-        setTimeout(() => {
-            el.style.outline = originalOutline;
-            el.style.backgroundColor = originalBackground;
-        }, 2000);
-        
-        // Copy selector to clipboard (optional)
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(selector).then(() => {
-                console.log('✅ Selector copied to clipboard:', selector);
-            });
-        }
-    }
-}, true);
 

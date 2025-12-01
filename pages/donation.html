@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="حمایت از پروژه ایراژ">
     <title data-title-fa="حمایت از پروژه | ایراژ" data-title-en="Support the Project | Irage">حمایت از پروژه | ایراژ</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="../assets/fonts/Inter.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="../assets/fonts/YekanBakh-VF.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="stylesheet" href="../assets/css/style.css" id="main-css">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -98,13 +97,13 @@
                 >
                     <div class="donation-wallet-section">
                         <div class="badge-group">
-                            <img src="../assets/icons/tether.svg" alt="USDT" class="tether-icon">
+                            <img src="../assets/icons/tether.svg" alt="USDT" class="tether-icon" loading="eager">
                             <span class="badge">USDT</span>
                             <span class="badge secondary">Tron</span>
                         </div>
 
                         <div class="qr-wrapper">
-                            <img src="../assets/images/qr-code.jpeg" alt="USDT QR Code">
+                            <img src="../assets/images/qr-code.jpeg" alt="USDT QR Code" loading="lazy">
                             <div class="address-row" id="donationAddressContainer" onclick="copyDonationAddress()">
                                 <span class="address-text" id="donationAddress">TNdXt3TSZnhuyGraxFhdSrUsNPtyXS4MZp</span>
                                 <button class="address-copy-btn" aria-label="Copy address" onclick="event.stopPropagation(); copyDonationAddress();">

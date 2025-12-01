@@ -109,6 +109,24 @@ html {
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
+    position: relative;
+}
+
+/* Home page - add bg.png image on top of gradient */
+html:not(:has(.page-content))::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/bg.png');
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+    pointer-events: none;
 }
 
 body {
@@ -844,120 +862,6 @@ html[lang="fa"] .home-title {
 }
 
 /* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-}
-
-.modal-content {
-    background-color: var(--white);
-    margin: 5% auto;
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-xl);
-    width: 90%;
-    max-width: 600px;
-    position: relative;
-    box-shadow: var(--shadow-lg);
-    animation: modalSlideIn 0.3s ease;
-}
-
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.close {
-    position: absolute;
-    top: var(--spacing-m);
-    left: var(--spacing-m);
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--gray-500);
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close:hover {
-    color: var(--gray-900);
-}
-
-.modal-content h2 {
-    margin-bottom: var(--spacing-m);
-    color: var(--gray-900);
-}
-
-.modal-content p {
-    margin-bottom: var(--spacing-l);
-    color: var(--gray-700);
-}
-
-.donation-options {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xl);
-}
-
-.donation-option {
-    padding: var(--spacing-l);
-    background-color: var(--gray-100);
-    border-radius: var(--radius-m);
-}
-
-.donation-option h3 {
-    margin-bottom: var(--spacing-m);
-    color: var(--gray-900);
-}
-
-.donation-option p {
-    margin-bottom: var(--spacing-s);
-}
-
-.wallet-address {
-    display: flex;
-    gap: var(--spacing-s);
-    align-items: center;
-    background-color: var(--white);
-    padding: var(--spacing-m);
-    border-radius: var(--radius-s);
-    border: 1px solid var(--gray-300);
-}
-
-.wallet-address code {
-    flex: 1;
-    font-family: 'Inter', monospace;
-    font-size: 0.9rem;
-    color: var(--gray-900);
-    word-break: break-all;
-}
-
-.btn-copy {
-    background-color: var(--primary-500);
-    color: var(--white);
-    border: none;
-    padding: var(--spacing-s) var(--spacing-m);
-    border-radius: var(--radius-s);
-    cursor: pointer;
-    font-family: var(--font-persian);
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-
-.btn-copy:hover {
-    background-color: var(--primary-600);
-}
 
 /* Page Styles */
 .page-content {
@@ -2196,11 +2100,6 @@ html[lang="en"] .footer-links {
         font-size: 0.85rem;
     }
 
-    .modal-content {
-        width: 95%;
-        margin: 10% auto;
-        padding: var(--spacing-l);
-    }
 }
 
 @media (max-width: 480px) {
@@ -2265,54 +2164,7 @@ body.no-scroll {
     color: var(--gray-900);
 }
 
-.wallet-address-large {
-    display: flex;
-    gap: var(--spacing-m);
-    align-items: center;
-    background-color: var(--white);
-    padding: var(--spacing-l);
-    border-radius: var(--radius-m);
-    border: 2px solid var(--primary-300);
-    margin-top: var(--spacing-m);
-}
-
-.wallet-address-large code {
-    flex: 1;
-    font-family: 'Inter', monospace;
-    font-size: 1rem;
-    color: var(--gray-900);
-    word-break: break-all;
-    padding: var(--spacing-s);
-    background-color: var(--gray-50);
-    border-radius: var(--radius-s);
-}
-
-.wallet-address-large .btn-copy {
-    background-color: var(--primary-500);
-    color: var(--white);
-    border: none;
-    padding: var(--spacing-m) var(--spacing-l);
-    border-radius: var(--radius-m);
-    cursor: pointer;
-    font-family: var(--font-persian);
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-    white-space: nowrap;
-}
-
-.wallet-address-large .btn-copy:hover {
-    background-color: var(--primary-600);
-}
-
 @media (max-width: 768px) {
-    .wallet-address-large {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .wallet-address-large .btn-copy {
-        width: 100%;
-    }
     
     .page-card {
         padding: 28px;

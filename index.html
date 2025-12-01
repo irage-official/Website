@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="ایراژ - تقویم مستقل ایرانی که میراث کهن ما را حفظ می‌کند">
     <title data-title-fa="ایراژ | تقویم میراث ایرانی" data-title-en="Irage | Iranian Heritage Calendar">ایراژ | تقویم میراث ایرانی</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="assets/fonts/Inter.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/YekanBakh-VF.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="stylesheet" href="assets/css/style.css" id="main-css">
     <link rel="icon" type="image/png" href="assets/images/logo_centered.png">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -71,6 +70,10 @@
 
     <!-- Body Content -->
     <div class="body-content">
+        <!-- Decorative Shapes -->
+        <div class="decorative-shape shape-left"></div>
+        <div class="decorative-shape shape-right"></div>
+        
         <!-- Content Section -->
         <div class="content-section">
             <!-- Hero Title -->
@@ -84,10 +87,10 @@
             <!-- Download Buttons -->
             <div class="download-section">
                 <a href="#" class="download-btn app-store">
-                        <img src="assets/images/Appstore.png" alt="Download on the App Store" class="store-image">
+                        <img src="assets/images/Appstore.png" alt="Download on the App Store" class="store-image" loading="lazy">
                 </a>
                 <a href="#" class="download-btn google-play">
-                        <img src="assets/images/Google Play.png" alt="GET IT ON Google Play" class="store-image">
+                        <img src="assets/images/Google Play.png" alt="GET IT ON Google Play" class="store-image" loading="lazy">
                 </a>
             </div>
             
@@ -102,53 +105,8 @@
         <!-- Screenshots Section -->
         <div class="screenshots-section">
             <div class="screenshots-container">
-                <img src="assets/images/shots-en.png" alt="App Screenshots" class="screenshots-image" data-lang="en" style="display: none;">
-                <img src="assets/images/shots-fa.png" alt="اسکرین‌شات اپلیکیشن" class="screenshots-image" data-lang="fa">
-            </div>
-        </div>
-    </div>
-
-    <!-- Donation Modal -->
-    <div id="donationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeDonationModal()">×</span>
-            <h2>
-                <span data-lang="fa">حمایت از پروژه ایراژ</span>
-                <span data-lang="en" style="display: none;">Support Irage Project</span>
-            </h2>
-            <p>
-                <span data-lang="fa">با حمایت شما، می‌توانیم این پروژه را ادامه دهیم و بهبود بخشیم.</span>
-                <span data-lang="en" style="display: none;">With your support, we can continue and improve this project.</span>
-            </p>
-            <div class="donation-options">
-                <div class="donation-option">
-                    <h3>
-                        <span data-lang="fa">کریپتو</span>
-                        <span data-lang="en" style="display: none;">Crypto</span>
-                    </h3>
-                    <p>
-                        <span data-lang="fa">آدرس کیف پول:</span>
-                        <span data-lang="en" style="display: none;">Wallet Address:</span>
-                    </p>
-                    <div class="wallet-address">
-                        <code id="walletAddress">0x...</code>
-                        <button class="btn-copy" onclick="copyWalletAddress()">
-                            <span data-lang="fa">کپی</span>
-                            <span data-lang="en" style="display: none;">Copy</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="donation-option">
-                    <h3>
-                        <span data-lang="fa">سایر روش‌ها</span>
-                        <span data-lang="en" style="display: none;">Other Methods</span>
-                    </h3>
-                    <p>
-                        <span data-lang="fa">برای اطلاعات بیشتر با ما تماس بگیرید:</span>
-                        <span data-lang="en" style="display: none;">For more information, contact us:</span>
-                        <a href="mailto:info@irage.site">info@irage.site</a>
-                    </p>
-                </div>
+                <img src="assets/images/shots-en.png" alt="App Screenshots" class="screenshots-image" data-lang="en" style="display: none;" loading="lazy">
+                <img src="assets/images/shots-fa.png" alt="اسکرین‌شات اپلیکیشن" class="screenshots-image" data-lang="fa" loading="lazy">
             </div>
         </div>
     </div>
